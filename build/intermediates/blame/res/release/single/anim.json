@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "E:\\WORKSPACE\\testAndroid\\build\\intermediates\\res\\merged\\release\\anim\\shake_x.xml",
+        "source": "E:\\WORKSPACE\\testAndroid\\res\\anim\\shake_x.xml"
+    },
+    {
+        "merged": "E:\\WORKSPACE\\testAndroid\\build\\intermediates\\res\\merged\\release\\anim\\zoom_exit.xml",
+        "source": "E:\\WORKSPACE\\testAndroid\\res\\anim\\zoom_exit.xml"
+    },
+    {
+        "merged": "E:\\WORKSPACE\\testAndroid\\build\\intermediates\\res\\merged\\release\\anim\\cylce.xml",
+        "source": "E:\\WORKSPACE\\testAndroid\\res\\anim\\cylce.xml"
+    }
+]

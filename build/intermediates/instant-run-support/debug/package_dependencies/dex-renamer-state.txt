@@ -1,0 +1,7 @@
+#Mon Nov 13 13:45:34 CST 2017
+base.0=E\:\\WORKSPACE\\testAndroid\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\2\\android-support-v4_e061ca29b918e04ab1fb3e09454f93297b1914c2
+renamed.1=classes2.dex
+renamed.0=classes.dex
+file.1=E\:\\WORKSPACE\\testAndroid\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\2\\android-support-v7-palette_3253d8158bef564c48d00e8ef44b88d36f116a5e\\classes.dex
+base.1=E\:\\WORKSPACE\\testAndroid\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\2\\android-support-v7-palette_3253d8158bef564c48d00e8ef44b88d36f116a5e
+file.0=E\:\\WORKSPACE\\testAndroid\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\2\\android-support-v4_e061ca29b918e04ab1fb3e09454f93297b1914c2\\classes.dex

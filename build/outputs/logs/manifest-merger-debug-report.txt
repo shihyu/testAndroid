@@ -1,0 +1,229 @@
+-- Merging decision tree log ---
+manifest
+ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:2:1-202:12
+	package
+		ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:3:5-32
+	android:versionName
+		ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:5:5-30
+		INJECTED from E:\WORKSPACE\testAndroid\AndroidManifest.xml
+		INJECTED from E:\WORKSPACE\testAndroid\AndroidManifest.xml
+	android:versionCode
+		ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:4:5-28
+		INJECTED from E:\WORKSPACE\testAndroid\AndroidManifest.xml
+		INJECTED from E:\WORKSPACE\testAndroid\AndroidManifest.xml
+	xmlns:android
+		ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:2:11-69
+uses-permission#android.permission.FLASHLIGHT
+ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:8:5-69
+	android:name
+		ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:8:22-66
+uses-permission#android.permission.VIBRATE
+ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:9:5-66
+	android:name
+		ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:9:22-63
+uses-permission#android.permission.RECEIVE_BOOT_COMPLETED
+ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:10:2-77
+	android:name
+		ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:10:19-75
+uses-permission#android.permission.INSTALL_PACKAGES
+ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:11:2-71
+	android:name
+		ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:11:19-69
+uses-permission#android.permission.WRITE_SETTINGS
+ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:12:5-73
+	android:name
+		ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:12:22-70
+uses-permission#android.permission.WRITE_SECURE_SETTINGS
+ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:13:5-80
+	android:name
+		ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:13:22-77
+uses-permission#android.permission.SET_WALLPAPER
+ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:14:5-88
+	android:name
+		ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:14:22-69
+uses-permission#android.permission.SYSTEM_ALERT_WINDOW
+ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:16:5-77
+	android:name
+		ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:16:22-75
+uses-sdk
+ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:17:5-43
+	android:minSdkVersion
+		ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:17:15-41
+application
+ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:19:5-200:19
+	android:label
+		ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:23:9-41
+	android:allowBackup
+		ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:20:9-35
+	android:icon
+		ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:21:9-45
+	android:theme
+		ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:22:9-60
+activity#com.example.demo1.slidingdrawer.SlidingDrawerDemo
+ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:24:9-30:20
+	android:label
+		ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:26:13-45
+	android:name
+		ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:25:13-77
+intent-filter#android.intent.action.MAIN
+ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:27:13-29:29
+action#android.intent.action.MAIN
+ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:28:17-69
+	android:name
+		ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:28:25-66
+activity#com.example.demo1.ScrollViewActivity
+ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:31:9-38:20
+	android:label
+		ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:33:13-45
+	android:name
+		ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:32:13-64
+intent-filter#android.doov.alarm.action+android.intent.action.MAIN
+ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:34:13-37:29
+action#android.doov.alarm.action
+ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:36:17-68
+	android:name
+		ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:36:25-65
+activity#com.example.demo1.date.DateActivity
+ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:39:9-45:20
+	android:label
+		ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:41:13-45
+	android:name
+		ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:40:13-63
+activity#com.example.demo.widget.activity.TouchActivity
+ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:47:9-53:20
+	android:label
+		ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:49:13-45
+	android:name
+		ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:48:13-74
+activity#com.example.MainActivity
+ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:54:9-61:20
+	android:label
+		ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:56:13-45
+	android:name
+		ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:55:13-52
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
+ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:57:13-60:29
+category#android.intent.category.LAUNCHER
+ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:59:17-77
+	android:name
+		ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:59:27-74
+activity#com.example.animation.AnimationActivity
+ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:63:9-69:20
+	android:label
+		ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:65:13-51
+	android:name
+		ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:64:13-67
+activity#com.example.notification.NotificationGroupSummaryActivity
+ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:71:9-77:20
+	android:label
+		ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:73:13-55
+	android:name
+		ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:72:13-85
+activity#com.example.binder.BinderActivity
+ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:79:9-85:20
+	android:label
+		ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:81:13-55
+	android:name
+		ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:80:13-61
+service#com.example.binder.ServerService
+ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:87:9-89:19
+	android:process
+		ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:88:13-38
+	android:name
+		ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:87:18-65
+activity#com.example.messenger.MessengerActivity
+ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:91:9-97:20
+	android:label
+		ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:93:13-43
+	android:name
+		ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:92:13-67
+activity#com.example.palette.PaletteActivity
+ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:98:9-104:20
+	android:label
+		ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:100:13-43
+	android:name
+		ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:99:13-63
+activity#com.example.shake.ShakeActivity
+ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:105:9-111:20
+	android:label
+		ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:107:13-47
+	android:name
+		ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:106:13-59
+activity#com.example.handler.HandlerActivity
+ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:112:9-118:20
+	android:label
+		ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:114:13-56
+	android:name
+		ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:113:13-63
+activity#com.example.preference.DoovPreferenceActivity
+ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:119:9-125:20
+	android:label
+		ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:121:13-60
+	android:name
+		ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:120:13-73
+activity#com.example.horizontalscrollview.HorizontalscrollActivity
+ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:127:9-133:20
+	android:label
+		ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:129:13-66
+	android:name
+		ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:128:13-85
+activity#com.example.progressbar.ProgressActivity
+ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:135:9-141:20
+	android:label
+		ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:137:13-49
+	android:name
+		ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:136:13-68
+activity#com.example.matrix.MatrixActivity
+ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:142:9-148:20
+	android:label
+		ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:144:13-49
+	android:name
+		ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:143:13-61
+service#com.example.messenger.MessengerService
+ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:150:9-152:19
+	android:process
+		ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:151:13-38
+	android:name
+		ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:150:18-71
+receiver#com.example.demo1.BootBroadcastReceiver
+ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:154:9-160:20
+	android:label
+		ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:156:13-46
+	android:name
+		ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:155:13-67
+intent-filter#android.intent.action.BOOT_COMPLETED
+ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:157:13-159:29
+action#android.intent.action.BOOT_COMPLETED
+ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:158:17-79
+	android:name
+		ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:158:25-76
+activity#com.doov.floatball.FloatBallActivity
+ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:162:9-168:20
+	android:label
+		ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:164:13-52
+	android:name
+		ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:163:13-64
+service#com.doov.floatball.StartFloatBallService
+ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:170:9-75
+	android:name
+		ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:170:18-73
+activity#com.doov.guaguaka.GuaGuaKaActivity
+ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:172:9-179:20
+	android:label
+		ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:174:13-45
+	android:name
+		ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:173:13-62
+activity#com.doov.wuzhiqi.WuZhiQiActivity
+ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:181:9-190:20
+	android:label
+		ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:184:13-45
+	android:theme
+		ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:183:13-92
+	android:name
+		ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:182:13-60
+activity#com.doov.luckypanel.LuckyPanelActivity
+ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:192:9-199:20
+	android:label
+		ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:194:13-54
+	android:name
+		ADDED from E:\WORKSPACE\testAndroid\AndroidManifest.xml:193:13-66

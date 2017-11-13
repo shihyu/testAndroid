@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+    <issue id="InlinedApi" severity="ignore" />
+    <issue id="ProtectedPermissions" severity="warning" />
+    <issue id="ServiceCast">
+        <ignore path="src/com/example/palette/PaletteActivity.java" />
+    </issue>
+    <issue id="UniquePermission" severity="warning" />
+</lint>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="E:\WORKSPACE\testAndroid\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="E:\WORKSPACE\testAndroid\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_d3b82235e3231ecea41dc04f613caeff3e48ab7f\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WORKSPACE\testAndroid\libs\android-support-v4.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="1dc1f63cee098b27db60b9a2833fd7ca58f89636">
+        <dex dex="E:\WORKSPACE\testAndroid\build\intermediates\transforms\dex\debug\folders\1000\2\android-support-v4_e061ca29b918e04ab1fb3e09454f93297b1914c2\classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\WORKSPACE\testAndroid\libs\android-support-v4.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="1dc1f63cee098b27db60b9a2833fd7ca58f89636">
+        <dex dex="E:\WORKSPACE\testAndroid\build\intermediates\pre-dexed\debug\android-support-v4_e061ca29b918e04ab1fb3e09454f93297b1914c2.jar" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WORKSPACE\testAndroid\libs\android-support-v7-palette.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="ad45c4713985d47617384c3b43ce2e0cb3412c49">
+        <dex dex="E:\WORKSPACE\testAndroid\build\intermediates\transforms\dex\debug\folders\1000\2\android-support-v7-palette_3253d8158bef564c48d00e8ef44b88d36f116a5e\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="E:\WORKSPACE\testAndroid\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="a6c3963ddc927bf0ff597e90653b9345206d2c8d">
+        <dex dex="E:\WORKSPACE\testAndroid\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_4bc9b3aab888c1c1f831b03676afbfba42eb10c5\classes.dex" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="E:\WORKSPACE\testAndroid\libs\android-support-v7-palette.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="ad45c4713985d47617384c3b43ce2e0cb3412c49">
+        <dex dex="E:\WORKSPACE\testAndroid\build\intermediates\pre-dexed\debug\android-support-v7-palette_3253d8158bef564c48d00e8ef44b88d36f116a5e.jar" />
+    </item>
+
+</items>

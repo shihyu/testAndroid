@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "E:\\WORKSPACE\\testAndroid\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi\\dock_bg_selected.png",
+        "source": "E:\\WORKSPACE\\testAndroid\\res\\drawable-hdpi\\dock_bg_selected.png"
+    },
+    {
+        "merged": "E:\\WORKSPACE\\testAndroid\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi\\ic_launcher.png",
+        "source": "E:\\WORKSPACE\\testAndroid\\res\\drawable-hdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "E:\\WORKSPACE\\testAndroid\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi\\valentines_day.png",
+        "source": "E:\\WORKSPACE\\testAndroid\\res\\drawable-hdpi\\valentines_day.png"
+    }
+]

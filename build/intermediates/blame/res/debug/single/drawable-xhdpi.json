@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "E:\\WORKSPACE\\testAndroid\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\stop.png",
+        "source": "E:\\WORKSPACE\\testAndroid\\res\\drawable-xhdpi\\stop.png"
+    },
+    {
+        "merged": "E:\\WORKSPACE\\testAndroid\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\ic_launcher.png",
+        "source": "E:\\WORKSPACE\\testAndroid\\res\\drawable-xhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "E:\\WORKSPACE\\testAndroid\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi\\start.png",
+        "source": "E:\\WORKSPACE\\testAndroid\\res\\drawable-xhdpi\\start.png"
+    }
+]

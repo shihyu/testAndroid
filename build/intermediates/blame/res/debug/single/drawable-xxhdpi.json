@@ -1,0 +1,50 @@
+[
+    {
+        "merged": "E:\\WORKSPACE\\testAndroid\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ic_launcher.png",
+        "source": "E:\\WORKSPACE\\testAndroid\\res\\drawable-xxhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "E:\\WORKSPACE\\testAndroid\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\danfan.png",
+        "source": "E:\\WORKSPACE\\testAndroid\\res\\drawable-xxhdpi\\danfan.png"
+    },
+    {
+        "merged": "E:\\WORKSPACE\\testAndroid\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\f040.png",
+        "source": "E:\\WORKSPACE\\testAndroid\\res\\drawable-xxhdpi\\f040.png"
+    },
+    {
+        "merged": "E:\\WORKSPACE\\testAndroid\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\float_speed_up.png",
+        "source": "E:\\WORKSPACE\\testAndroid\\res\\drawable-xxhdpi\\float_speed_up.png"
+    },
+    {
+        "merged": "E:\\WORKSPACE\\testAndroid\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\meizi.png",
+        "source": "E:\\WORKSPACE\\testAndroid\\res\\drawable-xxhdpi\\meizi.png"
+    },
+    {
+        "merged": "E:\\WORKSPACE\\testAndroid\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\stone_w2.png",
+        "source": "E:\\WORKSPACE\\testAndroid\\res\\drawable-xxhdpi\\stone_w2.png"
+    },
+    {
+        "merged": "E:\\WORKSPACE\\testAndroid\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\bg2.png",
+        "source": "E:\\WORKSPACE\\testAndroid\\res\\drawable-xxhdpi\\bg2.png"
+    },
+    {
+        "merged": "E:\\WORKSPACE\\testAndroid\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\stone_b1.png",
+        "source": "E:\\WORKSPACE\\testAndroid\\res\\drawable-xxhdpi\\stone_b1.png"
+    },
+    {
+        "merged": "E:\\WORKSPACE\\testAndroid\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\ipad.png",
+        "source": "E:\\WORKSPACE\\testAndroid\\res\\drawable-xxhdpi\\ipad.png"
+    },
+    {
+        "merged": "E:\\WORKSPACE\\testAndroid\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\xialian.png",
+        "source": "E:\\WORKSPACE\\testAndroid\\res\\drawable-xxhdpi\\xialian.png"
+    },
+    {
+        "merged": "E:\\WORKSPACE\\testAndroid\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\iphone.png",
+        "source": "E:\\WORKSPACE\\testAndroid\\res\\drawable-xxhdpi\\iphone.png"
+    },
+    {
+        "merged": "E:\\WORKSPACE\\testAndroid\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi\\f015.png",
+        "source": "E:\\WORKSPACE\\testAndroid\\res\\drawable-xxhdpi\\f015.png"
+    }
+]
