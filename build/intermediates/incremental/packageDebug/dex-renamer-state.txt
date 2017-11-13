@@ -1,7 +1,0 @@
-#Mon Nov 13 17:33:20 CST 2017
-base.0=E\:\\WORKSPACE\\testAndroid\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run-bootstrap_4bc9b3aab888c1c1f831b03676afbfba42eb10c5
-renamed.1=classes.dex
-renamed.0=classes2.dex
-file.1=E\:\\WORKSPACE\\testAndroid\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run_d3b82235e3231ecea41dc04f613caeff3e48ab7f\\classes.dex
-base.1=E\:\\WORKSPACE\\testAndroid\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run_d3b82235e3231ecea41dc04f613caeff3e48ab7f
-file.0=E\:\\WORKSPACE\\testAndroid\\build\\intermediates\\transforms\\dex\\debug\\folders\\1000\\10000\\instant-run-bootstrap_4bc9b3aab888c1c1f831b03676afbfba42eb10c5\\classes.dex
