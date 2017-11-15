@@ -1,10 +1,5 @@
 package com.example.binder;
 
-import com.example.aidl.Book;
-import com.example.aidl.IBookManager;
-import com.example.aidl.IOnNewBookListener;
-import com.example.demo1.R;
-
 import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
@@ -19,8 +14,13 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class BinderActivity extends Activity implements OnClickListener{
-	private static final String TAG = "BinderActivity";
+import com.example.aidl.Book;
+import com.example.aidl.IBookManager;
+import com.example.aidl.IOnNewBookListener;
+import com.example.demo1.R;
+
+public class AIDLActivity extends Activity implements OnClickListener{
+	private static final String TAG = "AIDLActivity";
 	private IBookManager mIBookManager = null;
 	private int i = 0;
 	private TextView tv;

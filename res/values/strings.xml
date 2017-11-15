@@ -8,7 +8,8 @@ xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="str_doov_button">点击:打印log,验证dispatchTouchEvent onInterceptTouchEvent  onTouchEvent onTouch onClick 执行顺序</string>
     <string name="notification_group">通知-group</string>
     <string name="notifications">通知测试-用于修改SystemUI</string>
-    <string name="binder">IPC-binder</string>
+
+    <string name="binder_download_test_title">Binder Activity-Service 通信测试</string>
     <string name="client_send_msg">客户端发送请求</string>
     <string name="tv_msg_response">服务器将返回信息</string>
     <string name="messenger">IPC-messenger</string>

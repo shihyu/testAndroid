@@ -12,7 +12,8 @@ import com.doov.guaguaka.GuaGuaKaActivity;
 import com.doov.luckypanel.LuckyPanelActivity;
 import com.doov.wuzhiqi.WuZhiQiActivity;
 import com.example.animation.AnimationActivity;
-import com.example.binder.BinderActivity;
+import com.example.binder.AIDLActivity;
+import com.example.binder.DownloadActivity;
 import com.example.demo.widget.activity.TouchActivity;
 import com.example.demo1.R;
 import com.example.demo1.slidingdrawer.SlidingDrawerDemo;
@@ -34,16 +35,22 @@ public class MainActivity extends Activity implements OnClickListener{
 		super.onCreate(savedInstanceState);
 		
 		setContentView(R.layout.activity_main);
-		
+
+		 Button horizontalscrollview_gridview = (Button)findViewById(R.id.horizontalscrollview_gridview);
+		 horizontalscrollview_gridview.setOnClickListener(this);
+
 		Button notifications = (Button)findViewById(R.id.notifications);
 		notifications.setOnClickListener(this);
 		
 		Button notification_group = (Button)findViewById(R.id.notification_group);
 		notification_group.setOnClickListener(this);
 		
-		Button binder = (Button)findViewById(R.id.binder);
-		binder.setOnClickListener(this);
-		
+		Button ipc_aidl = (Button)findViewById(R.id.ipc_aidl);
+		 ipc_aidl.setOnClickListener(this);
+
+		Button ipc_binder = (Button)findViewById(R.id.ipc_binder);
+		 ipc_binder.setOnClickListener(this);
+
 		Button messenger = (Button)findViewById(R.id.messenger);
 		messenger.setOnClickListener(this);
 		
@@ -64,9 +71,6 @@ public class MainActivity extends Activity implements OnClickListener{
 		
 		Button preference = (Button)findViewById(R.id.preference);
 		preference.setOnClickListener(this);
-		
-		Button horizontalscrollview_gridview = (Button)findViewById(R.id.horizontalscrollview_gridview);
-		horizontalscrollview_gridview.setOnClickListener(this);
 		
 		Button progress_bar = (Button)findViewById(R.id.progress_bar);
 		progress_bar.setOnClickListener(this);
@@ -99,8 +103,11 @@ public class MainActivity extends Activity implements OnClickListener{
 		case R.id.notification_group:
 			intent.setClass(this, NotificationGroupSummaryActivity.class);
 			break;
-		case R.id.binder:
-			intent.setClass(this, BinderActivity.class);
+		case R.id.ipc_aidl:
+			intent.setClass(this, AIDLActivity.class);
+			break;
+		case R.id.ipc_binder:
+			intent.setClass(this, DownloadActivity.class);
 			break;
 		case R.id.messenger:
 			intent.setClass(this, MessengerActivity.class);

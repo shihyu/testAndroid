@@ -29,26 +29,33 @@
 		        android:text="@string/notification_group" />
 		
 		    <Button
-		        android:id="@+id/binder"
+		        android:id="@+id/ipc_aidl"
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
 		        android:layout_marginBottom="10dp"
-		        android:text="@string/binder" />
-		
-		    <Button
+		        android:text="IPC-AIDL" />
+
+			<Button
 		        android:id="@+id/messenger"
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
 		        android:layout_marginBottom="10dp"
 		        android:text="@string/messenger" />
-		
-		    <Button
+
+			<Button
+				android:id="@+id/ipc_binder"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="10dp"
+				android:text="@string/binder_download_test_title" />
+
+			<Button
 		        android:id="@+id/animation"
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
 		        android:layout_marginBottom="10dp"
 		        android:text="@string/animation_test" />
-		    
+
 		    <Button
 		        android:id="@+id/palette"
 		        android:layout_width="wrap_content"
