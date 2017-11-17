@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:doov="http://schemas.android.com/apk/res/com.example.demo1"
+    xmlns:doov="http://schemas.android.com/apk/res/com.example.demo"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
@@ -10,7 +10,7 @@
         android:orientation="vertical" 
         android:layout_marginTop="20dp">
         
-        <com.example.progressbar.HorizontalProgressBar
+        <com.example.demo.progressbar.HorizontalProgressBar
             android:id="@+id/horizontal_progress_bar"
             android:layout_width="match_parent"
         	android:layout_height="wrap_content"
@@ -26,7 +26,7 @@
         	doov:unreach_height="1dp"
         	/>
         
-        <com.example.progressbar.HorizontalProgressBar
+        <com.example.demo.progressbar.HorizontalProgressBar
             android:layout_width="match_parent"
         	android:layout_height="wrap_content"
         	android:progress= "50"
@@ -42,7 +42,7 @@
         	doov:unreach_height="1dp"
         	/>
         
-        <com.example.progressbar.HorizontalProgressBar
+        <com.example.demo.progressbar.HorizontalProgressBar
             android:layout_width="match_parent"
         	android:layout_height="wrap_content"
         	android:progress="0"
@@ -59,7 +59,7 @@
         	/>
         
         
-         <com.example.progressbar.CircleProgressBar
+         <com.example.demo.progressbar.CircleProgressBar
             android:id="@+id/circleprogressbar"
             android:layout_width="match_parent"
         	android:layout_height="wrap_content"
@@ -77,7 +77,7 @@
         	doov:unreach_height="1dp"
         	doov:radius="40dp"
         	/>
-         <com.example.progressbar.CircleProgressBar
+         <com.example.demo.progressbar.CircleProgressBar
             android:layout_width="match_parent"
         	android:layout_height="wrap_content"
         	android:layout_marginTop="40dp"
@@ -92,7 +92,7 @@
         	doov:unreach_height="1dp"
         	doov:radius="40dp"
         	/>
-         <com.example.progressbar.CircleProgressBar
+         <com.example.demo.progressbar.CircleProgressBar
             android:layout_width="match_parent"
         	android:layout_height="wrap_content"
         	android:layout_marginTop="40dp"

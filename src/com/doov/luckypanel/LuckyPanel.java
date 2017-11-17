@@ -17,8 +17,7 @@ import android.view.SurfaceHolder.Callback;
 import android.view.SurfaceView;
 
 import com.doov.luckypanel.LuckyPanelActivity.EndCallBack;
-
-import com.example.demo1.R;
+import com.example.demo.R;
 
 import java.util.Random;
 

@@ -16,7 +16,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.demo1.R;
+import com.example.demo.R;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.doov.guaguaka.GuaView.GuaViewCompleteListener;
-import com.example.demo1.R;
+import com.example.demo.R;
 
 public class GuaGuaKaActivity extends Activity {
 

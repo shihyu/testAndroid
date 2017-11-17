@@ -10,7 +10,7 @@ import android.graphics.Paint.FontMetrics;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.example.demo1.R;
+import com.example.demo.R;
 
 
 public class FloatBallView extends View {

@@ -7,7 +7,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import com.example.demo1.R;
+import com.example.demo.R;
+
 public class FloatMenu extends LinearLayout {
 	private final String TAG = "FloatMenu";
 	private ViewManager mViewManager;

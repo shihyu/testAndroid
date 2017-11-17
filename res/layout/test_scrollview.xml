@@ -8,9 +8,9 @@
     android:paddingRight="@dimen/activity_horizontal_margin"  
     android:paddingTop="@dimen/activity_vertical_margin"  
     android:background="@android:color/background_dark"
-    tools:context=".ScrollViewActivity" >  
+    tools:context="com.example.demo.widget.scrollview.ScrollViewActivity" >
   
-    <com.example.demo1.ObservableScrollView  
+    <com.example.demo.widget.scrollview.ObservableScrollView
         android:id="@+id/view1"  
         android:layout_width="wrap_content"  
         android:layout_height="match_parent" >  
@@ -50,9 +50,9 @@
                 android:layout_height="100dp"  
                 android:text="试试6" />  
         </LinearLayout>  
-    </com.example.demo1.ObservableScrollView>  
+    </com.example.demo.widget.scrollview.ObservableScrollView>
   
-    <com.example.demo1.ObservableScrollView  
+    <com.example.demo.widget.scrollview.ObservableScrollView
         android:id="@+id/view2"  
         android:layout_width="wrap_content"  
         android:layout_height="match_parent" >  
@@ -92,6 +92,6 @@
                 android:layout_height="100dp"  
                 android:text="试试6" />  
         </LinearLayout>  
-    </com.example.demo1.ObservableScrollView>  
+    </com.example.demo.widget.scrollview.ObservableScrollView>
   
 </LinearLayout>  

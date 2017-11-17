@@ -17,7 +17,8 @@ import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
 
-import com.example.demo1.R;
+import com.example.demo.R;
+
 
 public class GuaView extends View {
 	private final static String TAg = "GuaView";

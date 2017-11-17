@@ -8,7 +8,8 @@ import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.demo1.R;
+import com.example.demo.R;
+
 
 public class LuckyPanelActivity extends Activity {
 

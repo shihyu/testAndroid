@@ -4,7 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.example.demo1.R;
+import com.example.demo.R;
 
 
 public class FloatBallActivity extends Activity {

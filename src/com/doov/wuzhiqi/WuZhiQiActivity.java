@@ -6,7 +6,8 @@ import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
 import android.os.Bundle;
 
-import com.example.demo1.R;
+import com.example.demo.R;
+
 
 public class WuZhiQiActivity extends Activity {
 
