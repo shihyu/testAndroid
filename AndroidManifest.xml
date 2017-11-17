@@ -24,6 +24,7 @@
 
         <activity
             android:name=".MainActivity"
+            android:launchMode="singleInstance"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -144,14 +145,6 @@
             android:process=":other2">
         </service>
         
-        <receiver
-            android:name="com.example.demo1.com.example.demo.widget.BootBroadcastReceiver"
-            android:label="@string/messenger" >
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-            </intent-filter>
-        </receiver>
-
         <activity
             android:name="com.doov.floatball.FloatBallActivity"
             android:label="@string/floatball_title" >

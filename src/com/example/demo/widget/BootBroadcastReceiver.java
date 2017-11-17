@@ -1,10 +1,3 @@
-/**   
-* @Title: BootBroadcastReceiver.java 
-* @Package com.example.demo1 
-* @author
-* @date 2015年8月24日 上午9:43:21 
-* @version V1.0   
-*/
 package com.example.demo.widget;
 
 import android.content.BroadcastReceiver;
