@@ -39,4 +39,6 @@ xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     <string name="tv_award">点击开始抽奖</string>
     <string name="lucky_panel_title">抽奖转盘</string>
+
+    <string name="weather_info">天气预报</string>
 </resources>

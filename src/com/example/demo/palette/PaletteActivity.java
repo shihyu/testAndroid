@@ -1,7 +1,6 @@
 package com.example.demo.palette;
 import android.app.Activity;
 import android.app.WallpaperManager;
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -20,14 +19,13 @@ import com.example.demo.R;
 import java.util.List;
 
 public class PaletteActivity extends Activity {
-	@SuppressWarnings("deprecation")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.palette_layout);
 		final ViewGroup sv_root_ll = (ViewGroup)this.findViewById(R.id.sv_root_ll);
 		final ImageView iv_wallpapaer = (ImageView)this.findViewById(R.id.iv_wallpapaer);
-		WallpaperManager wallpaperManager = (WallpaperManager) this.getSystemService(Context.WALLPAPER_SERVICE);
+		WallpaperManager wallpaperManager = WallpaperManager.getInstance(this);
 		Drawable wallpapaer = wallpaperManager.getDrawable();
 		
 		Bitmap wallpaperBitmap = ((BitmapDrawable)wallpapaer).getBitmap();
@@ -119,8 +117,6 @@ public class PaletteActivity extends Activity {
 	/**
 	 * 裁剪图片,根据图片的高度
 	 * @param bitmap
-	 * @param start
-	 * @param end
 	 * @return
 	 */
     public static Bitmap ImageCrop(Bitmap bitmap,int Y_start,int Y_end) {

@@ -14,6 +14,7 @@ import com.example.demo.animation.AnimationActivity;
 import com.example.demo.annotation.BindView;
 import com.example.demo.annotation.ContentView;
 import com.example.demo.annotation.OnClick;
+import com.example.demo.baiduweather.WeatherActivity;
 import com.example.demo.binder.AIDLActivity;
 import com.example.demo.binder.DownloadActivity;
 import com.example.demo.handler.HandlerActivity;
@@ -71,6 +72,9 @@ public class MainActivity extends BaseActivity implements OnClickListener {
     @BindView(R.id.horizontalscrollview_gridview)
     private Button horizontalscrollview_gridview;
 
+    @BindView(R.id.baidu_weather)
+    private Button baidu_weather;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,7 +86,8 @@ public class MainActivity extends BaseActivity implements OnClickListener {
             R.id.palette,R.id.shake,R.id.touch,
             R.id.handler,R.id.preference,R.id.horizontalscrollview_gridview,
             R.id.progress_bar,R.id.matrix,R.id.floatball,
-            R.id.guaguaka,R.id.wuzhiqi,R.id.lucky_panel
+            R.id.guaguaka,R.id.wuzhiqi,R.id.lucky_panel,
+            R.id.baidu_weather
     })
     public void onClick(View v) {
         Intent intent = new Intent();
@@ -141,6 +146,9 @@ public class MainActivity extends BaseActivity implements OnClickListener {
                 break;
             case R.id.lucky_panel:
                 intent.setClass(this, LuckyPanelActivity.class);
+                break;
+            case R.id.baidu_weather:
+                intent.setClass(this, WeatherActivity.class);
                 break;
 
             default:
