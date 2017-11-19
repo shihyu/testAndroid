@@ -12,6 +12,7 @@ apply plugin: 'com.android.application'
 dependencies {
     compile fileTree(include: '*.jar', dir: 'libs')
     compile project(':volley-master')
+    compile files('libs/gson-2.8.2.jar')
 }
 
 android {
@@ -19,13 +20,13 @@ android {
         debug_key {
             keyAlias 'debugkey'
             keyPassword '15172827014'
-            storeFile file('E:/zhangle/android_studio_miyao/debug.jks')
+            storeFile file('D:/android_studio_miyao/debug.jks')
             storePassword '15172827014'
         }
         release_key {
             keyAlias 'release_key'
             keyPassword '15172827014'
-            storeFile file('E:/zhangle/android_studio_miyao/release.jks')
+            storeFile file('D:/android_studio_miyao/release.jks')
             storePassword '15172827014'
         }
     }

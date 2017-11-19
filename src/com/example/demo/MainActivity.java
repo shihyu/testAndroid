@@ -14,7 +14,8 @@ import com.example.demo.animation.AnimationActivity;
 import com.example.demo.annotation.BindView;
 import com.example.demo.annotation.ContentView;
 import com.example.demo.annotation.OnClick;
-import com.example.demo.baiduweather.WeatherActivity;
+import com.example.demo.weather.Activity.HeFenWeatherActivity;
+import com.example.demo.weather.Activity.WeatherActivity;
 import com.example.demo.binder.AIDLActivity;
 import com.example.demo.binder.DownloadActivity;
 import com.example.demo.handler.HandlerActivity;
@@ -148,7 +149,7 @@ public class MainActivity extends BaseActivity implements OnClickListener {
                 intent.setClass(this, LuckyPanelActivity.class);
                 break;
             case R.id.baidu_weather:
-                intent.setClass(this, WeatherActivity.class);
+                intent.setClass(this, HeFenWeatherActivity.class);
                 break;
 
             default:

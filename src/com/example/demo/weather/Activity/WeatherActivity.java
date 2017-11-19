@@ -1,4 +1,4 @@
-package com.example.demo.baiduweather;
+package com.example.demo.weather.Activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -6,9 +6,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.android.volley.NetworkResponse;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.baidu.location.BDAbstractLocationListener;
@@ -21,8 +23,12 @@ import com.example.demo.annotation.ContentView;
 import com.example.demo.annotation.OnClick;
 import com.example.demo.widget.BaseActivity;
 
+import java.io.UnsupportedEncodingException;
+
 /**
  * Created by zhangle on 2017-11-17.
+ *
+ * 获取百度天气和和风天气，目前百度天气好像是出了问题，一直是服务被禁用。
  */
 
 @ContentView(R.layout.baidu_weather)
@@ -120,14 +126,13 @@ public class WeatherActivity extends BaseActivity {
 
     public void getBaiduWeatherInfo(String city,String cityCode) {
         if(city == null || city.trim().equals(""))return;
-        //String url = "http://api.map.baidu.com/telematics/v3/weather?location=" + city + "&output=json&ak=" + key;
-        String url = "http://api.map.baidu.com/telematics/v3/weather?location=" + city +
-                "&output=json&ak="+ AK +"&mcode="+SHA1+";com.example.demo";
-        //String url = "https://api.heweather.com/x3/weather?cityid="+ cityCode +"&key=3f25dfd138cf44669dab1b9985fd4f15";
+        String url = "http://api.map.baidu.com/telematics/v3/weather?location=" + city + "&output=json&ak=" + AK;
+        //String url = "http://api.map.baidu.com/telematics/v3/weather?location=" + city +  "&output=json&ak="+ AK +"&mcode="+SHA1+";com.example.demo";
         Log.d(TAG, "getWeatherInfo: url=" + url);
         RequestQueue mQueue= Volley.newRequestQueue(this);
 
-        StringRequest stringRequest = new StringRequest(url, new Response.Listener<String>() {
+        MyStringRequest stringRequest = new MyStringRequest(url, new Response.Listener<String>() {
+
             @Override
             public void onResponse(String s) {
                 Log.d(TAG, "onResponse: " + s);
@@ -156,7 +161,7 @@ public class WeatherActivity extends BaseActivity {
         Log.d(TAG, "getWeatherInfo: url=" + url);
         RequestQueue mQueue= Volley.newRequestQueue(this);
 
-        StringRequest stringRequest = new StringRequest(url, new Response.Listener<String>() {
+        MyStringRequest stringRequest = new MyStringRequest(url, new Response.Listener<String>() {
             @Override
             public void onResponse(String s) {
                 Log.d(TAG, "onResponse: " + s);
@@ -173,5 +178,31 @@ public class WeatherActivity extends BaseActivity {
         });
 
         mQueue.add(stringRequest);
+    }
+
+    class MyStringRequest extends  StringRequest{
+
+
+        public MyStringRequest(int method, String url, Response.Listener<String> listener, Response.ErrorListener errorListener) {
+            super(method, url, listener, errorListener);
+        }
+
+        public MyStringRequest(String url, Response.Listener<String> listener, Response.ErrorListener errorListener) {
+            super(url, listener, errorListener);
+        }
+
+
+        @Override
+        protected Response<String> parseNetworkResponse(NetworkResponse response) {
+            // TODO Auto-generated method stub
+            String str = null ;
+            try {
+                str = new String(response.data,"utf-8" );
+            } catch (UnsupportedEncodingException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            return Response.success(str, HttpHeaderParser.parseCacheHeaders(response));
+        }
     }
 }
