@@ -235,7 +235,7 @@
         </activity>
         <activity
             android:name=".weather.Activity.HeFenWeatherActivity"
-            android:theme="@android:style/Theme.Material.Light.NoActionBar"
+            android:theme="@style/TranslucentTheme"
             android:label="@string/weather_info" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

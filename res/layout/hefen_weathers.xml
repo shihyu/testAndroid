@@ -3,13 +3,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center_horizontal">
+    android:background="@drawable/weather_background"
+    android:gravity="center_horizontal"
+    android:fitsSystemWindows="true"
+    >
+
+    <!--位置 区县-->
+    <TextView
+        android:id="@+id/tv_district"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/weather_district_size"
+        android:drawableBottom="@drawable/ic_locate_plane"
+        android:textColor="@android:color/black"
+        android:text="南山区"
+        />
 
     <!--天气 晴-->
     <TextView
         android:id="@+id/tv_cond_txt"
+        android:layout_marginTop="45dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="@dimen/weather_cond_size"
+        android:textColor="@android:color/black"
         android:text="晴"
         />
 
@@ -18,19 +35,23 @@
         android:id="@+id/tv_tmp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:text="19 °"
-        android:textSize="36sp" />
+        android:layout_marginTop="20dp"
+        android:text="19°"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/weather_tmp_size" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
         android:gravity="center_horizontal">
         <!--风向 风力-->
         <TextView
             android:id="@+id/tv_wind_dir"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="@dimen/weather_wind_dir_size"
+            android:textColor="@android:color/black"
             android:text="东北风2级"
             />
         <!--相对湿度-->
@@ -38,12 +59,15 @@
             android:id="@+id/tv_hum"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:textSize="@dimen/weather_wind_dir_size"
+            android:textColor="@android:color/black"
             android:text="40%"
             />
     </LinearLayout>
 
-<!--逐小时预报-->
-    <HorizontalScrollView
+    <!--逐小时预报-->
+   <!-- <HorizontalScrollView
         android:layout_marginTop="30dp"
         android:id="@+id/horizontalscrollview"
         android:layout_width="match_parent"
@@ -56,18 +80,22 @@
             android:layout_height="wrap_content">
             <GridView
                 android:id="@+id/gv_hourly"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:numColumns="auto_fit"
                 android:horizontalSpacing="10dp"
                 />
         </RelativeLayout>
-    </HorizontalScrollView>
+    </HorizontalScrollView>-->
 
 
     <!--未来3-10 天气预报-->
-    <ListView
-        android:id="@+id/lv_forecast"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_forecast"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        />
 </LinearLayout>

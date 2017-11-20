@@ -13,6 +13,9 @@ dependencies {
     compile fileTree(include: '*.jar', dir: 'libs')
     compile project(':volley-master')
     compile files('libs/gson-2.8.2.jar')
+    compile 'com.android.support:support-v4:26.0.0-alpha1'
+    compile 'com.android.support:recyclerview-v7:26.0.0-alpha1'
+    compile 'com.android.support:palette-v7:26.0.0-alpha1'
 }
 
 android {
@@ -20,7 +23,7 @@ android {
         debug_key {
             keyAlias 'debugkey'
             keyPassword '15172827014'
-            storeFile file('D:/android_studio_miyao/debug.jks')
+            storeFile file('E:/zhangle/android_studio_miyao/debug.jks')
             storePassword '15172827014'
         }
         release_key {

@@ -13,4 +13,5 @@ public class Location {
     public String cityCode;
     public String district;     //获取区县
     public String street;       //获取街道信息
+
 }

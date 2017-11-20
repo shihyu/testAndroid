@@ -35,8 +35,14 @@ public class AnnotationUtils {
         }
     }
 
-    public static void injectBindView(Activity activity){
-        Class a = activity.getClass();
+    public static void injectBindView(Object object){
+        View v = null;
+        if(object instanceof Activity){
+            v = ((Activity)object).getWindow().getDecorView();
+        }else{
+            v = (View)object;
+        }
+        Class a = object.getClass();
         Field[] fileds = a.getDeclaredFields();
         if(fileds != null ){
             for (Field field :fileds){
@@ -45,8 +51,8 @@ public class AnnotationUtils {
                 if(bindView != null){
                     int viewID = bindView.value();
                     try {
-                        View view = activity.findViewById(viewID);
-                        field.set(activity,view);
+                        View view = v.findViewById(viewID);
+                        field.set(object,view);
                     } catch (IllegalAccessException e) {
                         e.printStackTrace();
                     }

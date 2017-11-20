@@ -20,4 +20,6 @@ public class WeatherConstant {
     //和风key
     public final static String KEY = "3f25dfd138cf44669dab1b9985fd4f15";
 
+    public final static String DU = "°";
+
 }
