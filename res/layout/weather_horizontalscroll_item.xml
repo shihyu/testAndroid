@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:gravity="center"
+    >
+    <TextView
+        android:id="@+id/tv_hour_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/weather_hour_cond_txt"
+        style="@style/weather_hour_style"
+        android:text="15:00"
+        />
+
+    <ImageView
+        android:id="@+id/iv_hour_daily_coud"
+        android:layout_width="@dimen/weather_forcast_daily_coud_height_iv"
+        android:layout_height="@dimen/weather_forcast_daily_coud_height_iv"
+        style="@style/weather_hour_style"
+        android:gravity="center_vertical"
+        android:background="@drawable/h100"/>
+    <TextView
+        android:id="@+id/tv_hour_cond_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/weather_hour_cond_txt"
+        style="@style/weather_hour_style"
+        android:text="晴间多云"
+        />
+    <TextView
+        android:id="@+id/tv_hour_tmp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/weather_hour_cond_txt"
+        style="@style/weather_hour_style"
+        android:text="18°"
+        />
+</LinearLayout>

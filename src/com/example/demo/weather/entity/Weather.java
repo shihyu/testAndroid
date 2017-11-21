@@ -31,11 +31,16 @@ public class Weather {
         public String status;
         public Now now;
 
-        public List<HeWeather6.DailyForecast> daily_forecast;
+        public List<DailyForecast> daily_forecast;
 
-
-        public List<HeWeather6.DailyForecast> getDaily_forecast() {
+        public List<DailyForecast> getDaily_forecast() {
             return daily_forecast;
+        }
+
+        public List<Hourly> hourly;
+
+        public List<Hourly> getHourly() {
+            return hourly;
         }
 
         public static class Basic {
@@ -149,7 +154,37 @@ public class Weather {
             public String wind_sc;
             public String wind_spd;
         }
+
+        public static class Hourly {
+            /**
+             * cloud : 67
+             * cond_code : 103
+             * cond_txt : 晴间多云
+             * dew : 13.0
+             * hum : 66
+             * pop : 7
+             * pres : 1016
+             * time : 2017-11-21 16:00
+             * tmp : 18
+             * wind_deg : 93
+             * wind_dir : 东风
+             * wind_sc : 微风
+             * wind_spd : 12
+             */
+
+            public String cloud;
+            public String cond_code;
+            public String cond_txt;
+            public String dew;
+            public String hum;
+            public String pop;
+            public String pres;
+            public String time;
+            public String tmp;
+            public String wind_deg;
+            public String wind_dir;
+            public String wind_sc;
+            public String wind_spd;
+        }
     }
-
-
 }

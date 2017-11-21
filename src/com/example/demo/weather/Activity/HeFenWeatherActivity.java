@@ -1,24 +1,31 @@
 package com.example.demo.weather.Activity;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.NetworkResponse;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.android.volley.toolbox.StringRequest;
@@ -28,6 +35,7 @@ import com.baidu.location.BDLocation;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.example.demo.R;
+import com.example.demo.annotation.AnnotationUtils;
 import com.example.demo.annotation.BindView;
 import com.example.demo.annotation.ContentView;
 import com.example.demo.weather.MyLinearLayoutManager;
@@ -52,7 +60,7 @@ import java.util.List;
  */
 
 @ContentView(R.layout.hefen_weathers)
-public class HeFenWeatherActivity extends BaseActivity {
+public class HeFenWeatherActivity extends BaseActivity implements  SwipeRefreshLayout.OnRefreshListener{
 
     public static final String TAG = "HeFenWeatherActivity";
 
@@ -77,31 +85,51 @@ public class HeFenWeatherActivity extends BaseActivity {
     @BindView(R.id.iv_daily_coud)
     private ImageView iv_daily_coud;
 
-    //@BindView(R.id.gv_hourly)
+    @BindView(R.id.gv_hourly)
     private GridView gv_hourly;
 
     @BindView(R.id.rv_forecast)
     private RecyclerView rv_forecast;
 
+    @BindView(R.id.swipe_refresh)
+    private SwipeRefreshLayout swipeRefreshLayout;
+
 
     private Location mCurrentLocation;
 
     private List<Weather.HeWeather6.DailyForecast> mDailyForecast;
+    private List<Weather.HeWeather6.Hourly> mHourly;
+    private Toast mToast;
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        initView();
+
+        initLocationClient();
+        initLocationClientOptin();
+    }
+
+    private void initLocationClient() {
         mLocationClient = new LocationClient(getApplicationContext());
         //声明LocationClient类
         mLocationClient.registerLocationListener(myListener);
         //注册监听函数
-
-        initLocationClientOptin();
-
     }
 
+    public void initView(){
+        //rv_forecast.setNestedScrollingEnabled(false);
+        swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light
+                );
+        swipeRefreshLayout.setOnRefreshListener(this);
+        setRefreshing(true);
+
+    }
     @Override
     protected void onResume() {
         super.onResume();
@@ -120,6 +148,13 @@ public class HeFenWeatherActivity extends BaseActivity {
         //更多LocationClientOption的配置，请参照类参考中LocationClientOption类的详细说明
 
         mLocationClient.start();
+    }
+
+    @Override
+    public void onRefresh() {
+        Log.d(TAG,"onRefresh");
+        initLocationClient();
+        initLocationClientOptin();
     }
 
     class MyLocationListener extends BDAbstractLocationListener {
@@ -146,6 +181,12 @@ public class HeFenWeatherActivity extends BaseActivity {
             tv_district.setCompoundDrawables(null,null,null,
                     isLocationNull?getDrawable(R.drawable.ic_locate_plane):null);
 
+
+            if(mCurrentLocation.city == null || mCurrentLocation.cityCode ==null){
+                //结束后停止刷新
+                setRefreshing(false);
+                return;
+            }
 
             getNowWeatherInfo(mCurrentLocation);
             getHourlyWeather(mCurrentLocation);
@@ -178,12 +219,13 @@ public class HeFenWeatherActivity extends BaseActivity {
                 tv_tmp.setText(heWeather6.now.tmp + WeatherConstant.DU);
                 tv_cond_txt.setText(heWeather6.now.cond_txt);
                 tv_hum.setText(getText(R.string.tv_hum_prefix) + heWeather6.now.hum + "%");
-
+                setRefreshing(false);
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
                 Log.e(TAG, volleyError.getMessage(), volleyError);
+                doNetworkErrorResponse(volleyError);
 
             }
         });
@@ -203,7 +245,23 @@ public class HeFenWeatherActivity extends BaseActivity {
             @Override
             public void onResponse(String s) {
                 Log.d(TAG, "getHourlyWeather onResponse: " + s);
+                Weather w = new Weather();
+                Gson gson = new Gson();
+                w = gson.fromJson(s, Weather.class);
 
+                mHourly = w.getHeWeather6().get(0).getHourly();
+
+                DisplayMetrics dm = new DisplayMetrics();
+                getWindowManager().getDefaultDisplay().getMetrics(dm);
+                float density = dm.density;
+                int ll_width = (int) (60 * density * mHourly.size());
+                RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(ll_width, RelativeLayout.LayoutParams.WRAP_CONTENT);
+                gv_hourly.setLayoutParams(params);
+                gv_hourly.setNumColumns(mHourly.size());
+
+                gv_hourly.setAdapter(new ScrollViewAdapter(HeFenWeatherActivity.this,mHourly));
+
+                setRefreshing(false);
 
             }
         }, new Response.ErrorListener() {
@@ -211,6 +269,7 @@ public class HeFenWeatherActivity extends BaseActivity {
             public void onErrorResponse(VolleyError volleyError) {
                 Log.e(TAG, volleyError.getMessage(), volleyError);
 
+                doNetworkErrorResponse(volleyError);
             }
         });
 
@@ -236,13 +295,13 @@ public class HeFenWeatherActivity extends BaseActivity {
                 mDailyForecast = heWeather6.getDaily_forecast();
                 updateForcastListView(mDailyForecast);
 
-
+                setRefreshing(false);
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
                 Log.e(TAG, volleyError.getMessage(), volleyError);
-
+                doNetworkErrorResponse(volleyError);
             }
         });
 
@@ -261,12 +320,81 @@ public class HeFenWeatherActivity extends BaseActivity {
         }
     }
 
-    public Date stringToDate(String strTime, String formatType) throws ParseException {
-        SimpleDateFormat formatter = new SimpleDateFormat(formatType);
-        Date date = null;
-        date = formatter.parse(strTime);
-        return date;
+    class ScrollViewAdapter extends BaseAdapter {
+        private Context ctx ;
+        private List<Weather.HeWeather6.Hourly> hours;
+
+        public ScrollViewAdapter(Context ctx,List<Weather.HeWeather6.Hourly> hours) {
+            this.ctx = ctx;
+            this.hours = hours;
+        }
+
+        @Override
+        public int getCount() {
+            return hours.size();
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return hours.get(position);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            ScrollViewAdapter.ViewHolder viewHolder = null;
+
+            if(convertView == null){
+                convertView = LayoutInflater.from(ctx).inflate(R.layout.weather_horizontalscroll_item,null);
+                viewHolder = new ScrollViewAdapter.ViewHolder(convertView);
+                convertView.setTag(viewHolder);
+            }else{
+                viewHolder = (ScrollViewAdapter.ViewHolder)convertView.getTag();
+            }
+
+            Weather.HeWeather6.Hourly hourly = hours.get(position);
+            if(hourly != null){
+
+                String[] time_array = hourly.time.split(" "); //2017-11-21 16:00
+                String time = time_array[1]==null?hourly.time:time_array[1];
+                viewHolder.tv_hour_time.setText(time);
+
+                String[] cond_txt_array = hourly.cond_txt.split("/");//毛毛雨/细雨
+                String cond_txt =cond_txt_array.length >0?cond_txt_array[0]:hourly.cond_txt;
+                viewHolder.tv_hour_cond_txt.setText(cond_txt);
+
+                viewHolder.tv_hour_tmp.setText(hourly.tmp + WeatherConstant.DU );
+                Drawable coudDrawbale = WeatherUtils.getCoudDrawbale(getResources(),hourly.cond_code);
+                viewHolder.iv_hour_daily_coud.setBackground(coudDrawbale);
+
+            }
+            return convertView;
+        }
+
+        class ViewHolder {
+            @BindView(R.id.tv_hour_time)
+            public TextView tv_hour_time;
+
+            @BindView(R.id.tv_hour_cond_txt)
+            public TextView tv_hour_cond_txt;
+
+            @BindView(R.id.tv_hour_tmp)
+            public TextView tv_hour_tmp;
+
+            @BindView(R.id.iv_hour_daily_coud)
+            public ImageView iv_hour_daily_coud;
+
+            public ViewHolder(View rootView) {
+                AnnotationUtils.injectBindView(this,rootView);
+
+            }
+        }
     }
+
     class ForcastAdapter extends RecyclerView.Adapter{
         private Context context;
         private LayoutInflater inflater;
@@ -287,7 +415,7 @@ public class HeFenWeatherActivity extends BaseActivity {
         public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
             ViewHolder vh = (ViewHolder)holder;
             Weather.HeWeather6.DailyForecast daily = list.get(position);
-            String xinqi = getXinQi(position);
+            String xinqi = getXinQi(position,daily.date);
             String[] s = daily.date.split("-");//2017-11-20
 
             vh.tv_daily_date.setText(xinqi + " " +s[1] + "-" + s[2]);
@@ -296,7 +424,7 @@ public class HeFenWeatherActivity extends BaseActivity {
             vh.iv_daily_coud.setBackground(coudDrawbale);
 
             //vh.tv_daily_coud.setCompoundDrawablesWithIntrinsicBounds(coudDrawbale,null, null, null);
-            vh.tv_daily_tmp.setText(daily.tmp_max + WeatherConstant.DU + "~" + WeatherConstant.DU + daily.tmp_min);
+            vh.tv_daily_tmp.setText(daily.tmp_max + WeatherConstant.DU + "~" + daily.tmp_min + WeatherConstant.DU );
         }
 
         @Override
@@ -306,29 +434,75 @@ public class HeFenWeatherActivity extends BaseActivity {
 
         class ViewHolder extends  RecyclerView.ViewHolder{
 
-            //@BindView(R.id.tv_daily_date)
+            @BindView(R.id.tv_daily_date)
             public TextView tv_daily_date;
-            //@BindView(R.id.tv_daily_coud)
+
+            @BindView(R.id.tv_daily_coud)
             public TextView tv_daily_coud;
-            //@BindView(R.id.tv_daily_tmp)
+
+            @BindView(R.id.tv_daily_tmp)
             public TextView tv_daily_tmp;
+
+            @BindView(R.id.iv_daily_coud)
             public ImageView iv_daily_coud;
+
             public ViewHolder(View itemView) {
                 super(itemView);
-                //AnnotationUtils.injectBindView(itemView);
-                tv_daily_date = (TextView)itemView.findViewById(R.id.tv_daily_date);
-                tv_daily_coud = (TextView)itemView.findViewById(R.id.tv_daily_coud);
-                tv_daily_tmp = (TextView)itemView.findViewById(R.id.tv_daily_tmp);
-                iv_daily_coud = (ImageView)itemView.findViewById(R.id.iv_daily_coud);
+                AnnotationUtils.injectBindView(this,itemView);
             }
         }
     }
 
     private String getXinQi(int position) {
-       String[] s = new String[]{"今天","明天","后天"};
-        return s[position];
+        String[] s = new String[]{"今天","明天","后天"};
+
+        return s[position>2?2:position];
     }
 
+    private String getXinQi(int position,String date) {
+        String[] s = new String[]{"今天","明天","后天"};
+        String[] s1 = new String[]{"周一","周二","周三","周四","周五","周六","周日"};
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date now = sdf.parse(date);
+            Log.d(TAG,"getXinQi" + now.toString());
+            return position > s.length-1?s1[position]:s[position];
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return date;
+    }
+    void showToast(CharSequence helpSequence) {
+        if (mToast != null) {
+            mToast.cancel();
+        }
+        Activity activity = this;
+        if (activity != null && !activity.isFinishing()) {
+            mToast = Toast.makeText(activity, helpSequence, Toast.LENGTH_SHORT);
+            mToast.show();
+        }
+    }
+
+    private void doNetworkErrorResponse(VolleyError volleyError) {
+        //停止刷新动画
+        setRefreshing(false);
+        if(volleyError instanceof TimeoutError){
+            showToast("网络超时");
+        }
+    }
+
+    public void setRefreshing(final boolean refresh){
+
+        swipeRefreshLayout.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                //停止/开始刷新动画
+                Log.d(TAG,"setRefreshing refresh=" +refresh);
+                swipeRefreshLayout.setRefreshing(refresh);
+            }
+        },1000);
+
+    }
     class MyStringRequest extends  StringRequest{
 
 

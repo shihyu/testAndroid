@@ -18,21 +18,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:gravity="center"
+        android:gravity="center_vertical|left"
         android:orientation="horizontal">
         <ImageView
             android:id="@+id/iv_daily_coud"
             android:layout_width="@dimen/weather_forcast_daily_coud_height_iv"
             android:layout_height="@dimen/weather_forcast_daily_coud_height_iv"
             android:layout_marginRight="3dp"
-            android:gravity="center_vertical"
+            android:gravity="center_vertical|left"
             android:background="@drawable/h100"/>
 
         <TextView
             android:layout_width="@dimen/weather_forcast_daily_coud_width"
             android:layout_height="@dimen/weather_forcast_daily_coud_height"
             android:textColor="@android:color/black"
-            android:gravity="center_vertical"
+            android:gravity="center_vertical|left"
             android:text="小雨"
             android:id="@+id/tv_daily_coud" />
     </LinearLayout>

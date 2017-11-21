@@ -57,7 +57,27 @@ public class AnnotationUtils {
                         e.printStackTrace();
                     }
                 }
+            }
+        }
+    }
 
+
+    public static void injectBindView(Object object,View v){
+        Class a = object.getClass();
+        Field[] fileds = a.getDeclaredFields();
+        if(fileds != null ){
+            for (Field field :fileds){
+                field.setAccessible(true);
+                BindView bindView = field.getAnnotation(BindView.class);
+                if(bindView != null){
+                    int viewID = bindView.value();
+                    try {
+                        View view = v.findViewById(viewID);
+                        field.set(object,view);
+                    } catch (IllegalAccessException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
         }
     }
