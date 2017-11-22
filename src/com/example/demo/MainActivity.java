@@ -148,7 +148,7 @@ public class MainActivity extends BaseActivity implements OnClickListener {
                 break;
             case R.id.baidu_weather:
                 //intent.setClass(this, HeFenWeatherActivity.class);
-                intent.setAction("com.zl.hefenweatherhefenweather");
+                intent.setAction("com.zl.hefenweather");
                 break;
 
             default:
