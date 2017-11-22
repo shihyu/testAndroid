@@ -1,10 +1,13 @@
-package com.example.demo.weather;
+package com.zl.hefenweather;
 
 /**
  * Created by zhangle on 2017/11/19.
  */
 
 public class WeatherConstant {
+
+    public static final String TAG = "HeFenWeather";
+
     //实况天气接口地址
     public final static String WEATHER_NOW_URL = "https://free-api.heweather.com/s6/weather/now";
 

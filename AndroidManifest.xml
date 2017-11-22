@@ -224,24 +224,6 @@
 
         <service android:name=".binder.DownloadServie"/>
 
-
-        <activity
-            android:name=".weather.Activity.WeatherActivity"
-            android:label="@string/weather_info" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".weather.Activity.HeFenWeatherActivity"
-            android:theme="@style/TranslucentTheme"
-            android:label="@string/weather_info" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-            </intent-filter>
-        </activity>
     </application>
 
 </manifest>

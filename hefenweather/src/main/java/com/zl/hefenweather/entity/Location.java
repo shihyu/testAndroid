@@ -1,11 +1,13 @@
-package com.example.demo.weather.entity;
+package com.zl.hefenweather.entity;
+
+import java.io.Serializable;
 
 /**
  * Created by zhangle on 2017/11/19.
  * 百度位置信息类
  */
 
-public class Location {
+public class Location implements Serializable {
     public String addr ;        //获取详细地址信息
     public String country ;     //获取国家
     public String province ;    //获取省份

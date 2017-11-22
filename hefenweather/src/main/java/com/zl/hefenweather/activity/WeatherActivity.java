@@ -1,4 +1,4 @@
-package com.example.demo.weather.Activity;
+package com.zl.hefenweather.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -17,11 +17,10 @@ import com.baidu.location.BDAbstractLocationListener;
 import com.baidu.location.BDLocation;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
-import com.example.demo.R;
-import com.example.demo.annotation.BindView;
-import com.example.demo.annotation.ContentView;
-import com.example.demo.annotation.OnClick;
-import com.example.demo.widget.BaseActivity;
+import com.zl.hefenweather.R;
+import com.zl.hefenweather.annotation.BindView;
+import com.zl.hefenweather.annotation.ContentView;
+import com.zl.hefenweather.annotation.OnClick;
 
 import java.io.UnsupportedEncodingException;
 
@@ -180,7 +179,7 @@ public class WeatherActivity extends BaseActivity {
         mQueue.add(stringRequest);
     }
 
-    class MyStringRequest extends  StringRequest{
+    class MyStringRequest extends StringRequest {
 
 
         public MyStringRequest(int method, String url, Response.Listener<String> listener, Response.ErrorListener errorListener) {

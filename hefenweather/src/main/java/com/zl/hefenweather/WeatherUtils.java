@@ -1,9 +1,7 @@
-package com.example.demo.weather;
+package com.zl.hefenweather;
 
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
-
-import com.example.demo.R;
 
 /**
  * Created by zy1373 on 2017-11-20.

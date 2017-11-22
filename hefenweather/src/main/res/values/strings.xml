@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">简单天气</string>
+
+    <string name="weather_info">天气预报</string>
+    <string name="tv_hum_prefix">湿度:</string>
+    <string name="baidu_location_ak">xUFHFEISxgVkHhk8PfPrYHn5stfC0lPo</string>
+</resources>

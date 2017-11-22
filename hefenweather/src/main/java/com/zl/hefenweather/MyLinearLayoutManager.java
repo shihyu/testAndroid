@@ -1,4 +1,4 @@
-package com.example.demo.weather;
+package com.zl.hefenweather;
 
 import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;
@@ -36,7 +36,7 @@ public class MyLinearLayoutManager extends LinearLayoutManager {
                     View.MeasureSpec.makeMeasureSpec(i, View.MeasureSpec.UNSPECIFIED),
                     mMeasuredDimension);
 
-            if (getOrientation() == HORIZONTAL) {
+            if (getOrientation() == LinearLayoutManager.HORIZONTAL) {
                 width = width + mMeasuredDimension[0];
                 if (i == 0) {
                     height = mMeasuredDimension[1];
@@ -90,4 +90,8 @@ public class MyLinearLayoutManager extends LinearLayoutManager {
         }
     }
 
+    @Override
+    public boolean canScrollVertically() {
+        return false;//super.canScrollVertically();
+    }
 }
