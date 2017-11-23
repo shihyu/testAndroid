@@ -540,12 +540,12 @@ public class HeFenWeatherActivity extends BaseActivity implements  SwipeRefreshL
 
     private String getXinQi(int position,String date) {
         String[] s = new String[]{"今天","明天","后天"};
-        String[] s1 = new String[]{"周一","周二","周三","周四","周五","周六","周日"};
+        String[] s1 = new String[]{"周日","周一","周二","周三","周四","周五","周六"};
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         try {
             Date now = sdf.parse(date);
-            //Log.d(TAG,"getXinQi" + now.toString());
-            return position > s.length-1?s1[position]:s[position];
+            //Log.d(TAG,"getXinQi " + now.toString() + " position=" + position + " getDay=" +  now.getDay());
+            return position <= s.length-1?s[position]:s1[now.getDay()];
         } catch (ParseException e) {
             e.printStackTrace();
         }
