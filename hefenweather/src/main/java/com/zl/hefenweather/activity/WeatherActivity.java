@@ -17,10 +17,10 @@ import com.baidu.location.BDAbstractLocationListener;
 import com.baidu.location.BDLocation;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
+import com.zl.annotation.BindView;
+import com.zl.annotation.ContentView;
+import com.zl.annotation.OnClick;
 import com.zl.hefenweather.R;
-import com.zl.hefenweather.annotation.BindView;
-import com.zl.hefenweather.annotation.ContentView;
-import com.zl.hefenweather.annotation.OnClick;
 
 import java.io.UnsupportedEncodingException;
 

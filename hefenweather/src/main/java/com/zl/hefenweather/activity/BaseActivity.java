@@ -3,7 +3,7 @@ package com.zl.hefenweather.activity;
 import android.app.Activity;
 import android.os.Bundle;
 
-import com.zl.hefenweather.annotation.AnnotationUtils;
+import com.zl.annotation.AnnotationUtils;
 
 
 /**
