@@ -22,3 +22,30 @@ android {
 }
 dependencies {
 }
+
+task deleteOldJar(type: Delete) {
+    //删除存在的
+    delete 'build/libs/myannotation.jar'
+}
+
+task makeJar(type: org.gradle.api.tasks.bundling.Jar) {
+    //指定生成的jar名
+    baseName 'myannotation'
+
+    //从哪里打包class文件
+    //com/c_imageloader为包名目录
+    from('build/intermediates/classes/debug/com/zl/annotation/')
+
+    //jar包的目录结构(文件处于com/c_imageloader目录下)
+    //生成的jar包没有包名
+    into('com/zl/annotation')
+
+    //去掉不需要打包的目录和文件
+    exclude('BuildConfig.class', 'R.class')
+
+    //去掉R$开头的文件
+    exclude{ it.name.startsWith('R$');}
+}
+
+makeJar.dependsOn(deleteOldJar, build)
+//jar包默认生成在build/libs下
