@@ -8,11 +8,11 @@ package com.zl.hefenweather.entity;
 public class Provshi {
     //"10101":"北京"
 
-    public String cityId;
-    public String cityName;
+    public String provshiId;
+    public String provshiName;
 
-    public Provshi(String cityId, String cityName) {
-        this.cityId = cityId;
-        this.cityName = cityName;
+    public Provshi(String provshiId, String provshiName) {
+        this.provshiId = provshiId;
+        this.provshiName = provshiName;
     }
 }

@@ -15,11 +15,15 @@ public class LocationSQLiteOpenHelper extends SQLiteOpenHelper {
 
     private static LocationSQLiteOpenHelper mDataBaseHelper = null;
 
+
+    public static final String TABLE_PROVSHI = "Provshi";
     private final String CREATE_PROVSHI_TABLE = "CREATE TABLE Provshi (\n" +
             "    id           INT       PRIMARY KEY,\n" +
             "    provshi_id   CHAR (20) NOT NULL,\n" +
             "    provshi_name CHAR (100) \n" +
             ");";
+
+    public static final String TABLE_CITYS = "Citys";
     private final String CREATE_CITY_TABLE = "CREATE TABLE Citys (\n" +
             "    id           INT       PRIMARY KEY,\n" +
             "    city_id   CHAR (20) NOT NULL,\n" +
