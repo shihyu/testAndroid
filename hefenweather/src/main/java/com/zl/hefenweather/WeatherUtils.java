@@ -1,7 +1,15 @@
 package com.zl.hefenweather;
 
+import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.renderscript.Allocation;
+import android.renderscript.Element;
+import android.renderscript.RenderScript;
+import android.renderscript.ScriptIntrinsicBlur;
 
 /**
  * Created by zy1373 on 2017-11-20.
@@ -192,4 +200,40 @@ public class WeatherUtils {
         return getCoudDrawbale(resources,Integer.parseInt(cond_txt_d));
 
     }
+
+    public static Drawable blur(Context context, int drawable) {
+        Bitmap bkg = BitmapFactory.decodeResource(context.getResources(),drawable);
+        long startMs = System.currentTimeMillis();
+        float radius = 25;
+        bkg = bkg.copy(bkg.getConfig(), true);
+
+        final RenderScript rs = RenderScript.create(context);
+        final Allocation input = Allocation.createFromBitmap(rs, bkg,
+                Allocation.MipmapControl.MIPMAP_NONE, Allocation.USAGE_SCRIPT);
+        final Allocation output = Allocation.createTyped(rs, input.getType());
+        final ScriptIntrinsicBlur script = ScriptIntrinsicBlur.create(rs,
+                Element.U8_4(rs));
+        script.setRadius(radius);
+        script.setInput(input);
+        script.forEach(output);
+        output.copyTo(bkg);
+
+        rs.destroy();
+        script.destroy();
+        input.destroy();
+        output.destroy();
+
+        //Log.d(TAG, "blur take away:" + (System.currentTimeMillis() - startMs) + "ms");
+        return new BitmapDrawable(bkg);
+    }
+
+
+    public static void handleProvshiResponse(String response){
+
+    }
+    public static void handleCitysResponse(String response){
+
+    }
+
+
 }

@@ -2,6 +2,7 @@ package com.zl.hefenweather.activity;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -22,13 +23,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.NetworkResponse;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.HttpHeaderParser;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.baidu.location.BDAbstractLocationListener;
 import com.baidu.location.BDLocation;
@@ -38,6 +36,7 @@ import com.google.gson.Gson;
 import com.zl.annotation.AnnotationUtils;
 import com.zl.annotation.BindView;
 import com.zl.annotation.ContentView;
+import com.zl.annotation.OnClick;
 import com.zl.hefenweather.FullyLinearLayoutManager;
 import com.zl.hefenweather.R;
 import com.zl.hefenweather.SharedPreferenceUtil;
@@ -48,8 +47,8 @@ import com.zl.hefenweather.entity.HeWeather6;
 import com.zl.hefenweather.entity.Hourly;
 import com.zl.hefenweather.entity.Location;
 import com.zl.hefenweather.entity.Weather;
+import com.zl.hefenweather.request.MyStringRequest;
 
-import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -97,6 +96,20 @@ public class HeFenWeatherActivity extends BaseActivity implements  SwipeRefreshL
 
     @BindView(R.id.swipe_refresh)
     private SwipeRefreshLayout swipeRefreshLayout;
+
+    @BindView(R.id.ll_left)
+    private ViewGroup ll_left;
+
+
+    @BindView(R.id.tv_manager_citys)
+    private TextView tv_manager_citys;
+
+    @BindView(R.id.tv_setttings)
+    private TextView tv_setttings;
+
+    @BindView(R.id.tv_about_me)
+    private TextView tv_about_me;
+
 
 
     private Location mCurrentLocation;
@@ -151,6 +164,7 @@ public class HeFenWeatherActivity extends BaseActivity implements  SwipeRefreshL
         swipeRefreshLayout.setProgressViewEndTarget(true,250);//move down progress
         setRefreshing(true);
 
+        ll_left.setBackground(getDrawable(R.drawable.left_background));
     }
 
     private void initLocationClientOptin() {
@@ -177,6 +191,19 @@ public class HeFenWeatherActivity extends BaseActivity implements  SwipeRefreshL
         initLocationClientOptin();
     }
 
+    @OnClick({R.id.tv_setttings,R.id.tv_about_me,R.id.tv_manager_citys})
+    public void onClick(View v){
+
+        switch (v.getId()){
+            case R.id.tv_setttings:
+            case R.id.tv_about_me:
+                showToast("暂无功能,开发中...");
+                break;
+            case R.id.tv_manager_citys:
+                startActivity(new Intent(this,CitysActivity.class));
+                break;
+        }
+    }
     class MyLocationListener extends BDAbstractLocationListener {
         @Override
         public void onReceiveLocation(BDLocation location) {
@@ -588,29 +615,5 @@ public class HeFenWeatherActivity extends BaseActivity implements  SwipeRefreshL
         },0);
 
     }
-    class MyStringRequest extends StringRequest {
 
-
-        public MyStringRequest(int method, String url, Response.Listener<String> listener, Response.ErrorListener errorListener) {
-            super(method, url, listener, errorListener);
-        }
-
-        public MyStringRequest(String url, Response.Listener<String> listener, Response.ErrorListener errorListener) {
-            super(url, listener, errorListener);
-        }
-
-
-        @Override
-        protected Response<String> parseNetworkResponse(NetworkResponse response) {
-            // TODO Auto-generated method stub
-            String str = null ;
-            try {
-                str = new String(response.data,"utf-8" );
-            } catch (UnsupportedEncodingException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-            return Response.success(str, HttpHeaderParser.parseCacheHeaders(response));
-        }
-    }
 }

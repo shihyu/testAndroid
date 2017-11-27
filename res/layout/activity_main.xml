@@ -46,20 +46,41 @@
 				android:layout_marginBottom="10dp"
 				android:text="@string/lucky_panel_title" />
 
+			<Button
+				android:id="@+id/preference"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="10dp"
+				android:text="@string/handler_preference_text" />
+
+			<Button
+				android:id="@+id/horizontalscrollview_gridview"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="10dp"
+				android:text="@string/horizontalscrollview_gridview" />
+
+			<Button
+				android:id="@+id/progress_bar"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="10dp"
+				android:text="@string/progress_bar" />
+
+		     <Button
+		      android:id="@+id/qq_drawer"
+		      android:layout_width="wrap_content"
+		      android:layout_height="wrap_content"
+		      android:text="QQ 右滑的抽屉效果"
+		      android:layout_marginBottom="10dp"/>
+
 		     <Button
 		      android:id="@+id/notifications"
 		      android:layout_width="wrap_content"
 		      android:layout_height="wrap_content"
 		      android:text="抽屉效果"
 		      android:layout_marginBottom="10dp"/>
-	
-		    <Button
-		        android:id="@+id/notification_group"
-		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content"
-		        android:layout_marginBottom="10dp"
-		        android:text="@string/notification_group" />
-		
+
 		    <Button
 		        android:id="@+id/ipc_aidl"
 		        android:layout_width="wrap_content"
@@ -107,6 +128,7 @@
 		        android:layout_height="wrap_content"
 		        android:layout_marginBottom="10dp"
 		        android:text="@string/touch_button_text" />
+
 		    <Button
 		        android:id="@+id/handler"
 		        android:layout_width="wrap_content"
@@ -114,32 +136,20 @@
 		        android:layout_marginBottom="10dp"
 		        android:text="@string/handler_button_text" />
 		    
-		    <Button
-		        android:id="@+id/preference"
-		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content"
-		        android:layout_marginBottom="10dp"
-		        android:text="@string/handler_preference_text" />
-		    
-		    <Button
-		        android:id="@+id/horizontalscrollview_gridview"
-		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content"
-		        android:layout_marginBottom="10dp"
-		        android:text="@string/horizontalscrollview_gridview" />
-		    
-		    <Button
-		        android:id="@+id/progress_bar"
-		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content"
-		        android:layout_marginBottom="10dp"
-		        android:text="@string/progress_bar" />
+
 		    <Button
 		        android:id="@+id/matrix"
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
 		        android:layout_marginBottom="10dp"
 		        android:text="@string/matrix" />
+
+			<Button
+				android:id="@+id/notification_group"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="10dp"
+				android:text="@string/notification_group" />
     	</LinearLayout>
    
     </ScrollView>

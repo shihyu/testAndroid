@@ -24,6 +24,7 @@ import com.example.demo.notification.NotificationGroupSummaryActivity;
 import com.example.demo.palette.PaletteActivity;
 import com.example.demo.preference.DoovPreferenceActivity;
 import com.example.demo.progressbar.ProgressActivity;
+import com.example.demo.qq_drawer.DrawerActivity;
 import com.example.demo.shake.ShakeActivity;
 import com.example.demo.widget.BaseActivity;
 import com.example.demo.widget.TouchActivity;
@@ -74,6 +75,9 @@ public class MainActivity extends BaseActivity implements OnClickListener {
     @BindView(R.id.baidu_weather)
     private Button baidu_weather;
 
+    @BindView(R.id.qq_drawer)
+    private Button qq_drawer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -86,7 +90,7 @@ public class MainActivity extends BaseActivity implements OnClickListener {
             R.id.handler,R.id.preference,R.id.horizontalscrollview_gridview,
             R.id.progress_bar,R.id.matrix,R.id.floatball,
             R.id.guaguaka,R.id.wuzhiqi,R.id.lucky_panel,
-            R.id.baidu_weather
+            R.id.baidu_weather,R.id.qq_drawer
     })
     public void onClick(View v) {
         Intent intent = new Intent();
@@ -145,6 +149,9 @@ public class MainActivity extends BaseActivity implements OnClickListener {
                 break;
             case R.id.lucky_panel:
                 intent.setClass(this, LuckyPanelActivity.class);
+                break;
+            case R.id.qq_drawer:
+                intent.setClass(this, DrawerActivity.class);
                 break;
             case R.id.baidu_weather:
                 //intent.setClass(this, HeFenWeatherActivity.class);

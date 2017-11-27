@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.zl.hefenweather">
 
-
     <!-- 这个权限用于进行网络定位 -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <!-- 这个权限用于访问GPS定位 -->
@@ -25,9 +24,8 @@
     <application
         android:allowBackup="true"
         android:label="@string/app_name"
-        android:theme="@style/TranslucentTheme"
-        android:supportsRtl="true">
-
+        android:supportsRtl="true"
+        android:theme="@style/TranslucentTheme">
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="@string/baidu_location_ak" />
@@ -35,16 +33,25 @@
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
-            android:process=":remote" >
-        </service>
+            android:process=":remote"></service>
 
-        <activity android:name=".activity.HeFenWeatherActivity"
+        <activity
+            android:name=".activity.HeFenWeatherActivity"
             android:icon="@drawable/weather_icon">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="com.zl.hefenweather" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.CitysActivity"
+            android:label="@string/title_activity_citys">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
     </application>
