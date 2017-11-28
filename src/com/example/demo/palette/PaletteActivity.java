@@ -2,6 +2,7 @@ package com.example.demo.palette;
 import android.app.Activity;
 import android.app.WallpaperManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -28,7 +29,8 @@ public class PaletteActivity extends Activity {
 		WallpaperManager wallpaperManager = WallpaperManager.getInstance(this);
 		Drawable wallpapaer = wallpaperManager.getDrawable();
 		
-		Bitmap wallpaperBitmap = ((BitmapDrawable)wallpapaer).getBitmap();
+		//Bitmap wallpaperBitmap = ((BitmapDrawable)wallpapaer).getBitmap();
+		Bitmap wallpaperBitmap = BitmapFactory.decodeResource(getResources(),R.drawable.weather_background);
 		Bitmap bitmap = ImageCrop(wallpaperBitmap.copy(Bitmap.Config.ARGB_4444, true),0,600);
 		Log.d("zhangle","bitmap=" + bitmap );
 		iv_wallpapaer.setLayoutParams(new  LinearLayout.LayoutParams(bitmap.getWidth(),bitmap.getHeight()));

@@ -70,7 +70,8 @@ public class LocationDB {
 
     public List<City> getCityList(String provshiId){
         ArrayList<City> list = new ArrayList<City>();
-        Cursor cursor = db.query(LocationSQLiteOpenHelper.TABLE_CITYS,null,"provshi_id=?",new String[]{provshiId},null,null,null);
+        Cursor cursor = db.query(LocationSQLiteOpenHelper.TABLE_CITYS,null,"provshi_id=?",
+                new String[]{provshiId},null,null,null);
         while (cursor.moveToNext()){
             City city = new City(cursor.getString(1),cursor.getString(2),cursor.getString(3));
             list.add(city);
@@ -80,7 +81,8 @@ public class LocationDB {
 
     public List<City> getCityList(){
         ArrayList<City> list = new ArrayList<City>();
-        Cursor cursor = db.query(LocationSQLiteOpenHelper.TABLE_CITYS,null,null,null,null,null,null);
+        Cursor cursor = db.query(LocationSQLiteOpenHelper.TABLE_CITYS,null,null,
+                null,null,null,null);
         while (cursor.moveToNext()){
             City city = new City(cursor.getString(1),cursor.getString(2),cursor.getString(3));
             list.add(city);
@@ -94,7 +96,7 @@ public class LocationDB {
             cv.put("city_id",city.cityId);
             cv.put("city_name",city.cityName);
             cv.put("provshi_id",city.provshiID);
-            db.insert(LocationSQLiteOpenHelper.TABLE_PROVSHI,null,cv);
+            db.insert(LocationSQLiteOpenHelper.TABLE_CITYS,null,cv);
         }
     }
     public void addCitys(List<City> cityList){

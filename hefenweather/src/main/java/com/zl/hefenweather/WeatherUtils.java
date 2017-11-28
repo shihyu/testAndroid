@@ -265,6 +265,7 @@ public class WeatherUtils {
                 City c = new City(str[0].replace("\"",""),
                         str[1].replace("\"",""),
                         provshiID.replace("\"",""));
+                list.add(c);
             }
             if(list.size() >0){
                 new LocationDB(context).addCitys(list);

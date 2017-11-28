@@ -4,7 +4,8 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import com.example.demo.annotation.AnnotationUtils;
+import com.zl.annotation.AnnotationUtils;
+
 
 /**
  * Created by zhangle on 2017-11-17.

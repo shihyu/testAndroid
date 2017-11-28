@@ -133,16 +133,25 @@
 
         <RelativeLayout
             android:id="@+id/ll_left"
-            android:layout_width="120dp"
+            android:layout_width="200dp"
             android:layout_height="match_parent"
+            android:background="@android:color/background_light"
             android:layout_gravity="left"
-            android:background="@android:color/background_dark"
             android:orientation="vertical">
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:background="@drawable/weather_background"/>
 
             <TextView
                 android:id="@+id/tv_manager_citys"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_location"
                 style="@style/weather_left_tx_style"
                 android:layout_alignParentLeft="true"
                 android:layout_above="@+id/tv_setttings"
@@ -152,6 +161,7 @@
                 android:id="@+id/tv_setttings"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_menu_set"
                 style="@style/weather_left_tx_style"
                 android:layout_alignParentLeft="true"
                 android:layout_above="@+id/tv_about_me"
@@ -161,6 +171,7 @@
                 android:id="@+id/tv_about_me"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/ic_menu_about"
                 style="@style/weather_left_tx_style"
                 android:layout_marginBottom="50dp"
                 android:layout_alignParentLeft="true"

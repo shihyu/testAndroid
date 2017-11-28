@@ -97,9 +97,6 @@ public class HeFenWeatherActivity extends BaseActivity implements  SwipeRefreshL
     @BindView(R.id.swipe_refresh)
     private SwipeRefreshLayout swipeRefreshLayout;
 
-    @BindView(R.id.ll_left)
-    private ViewGroup ll_left;
-
     @BindView(R.id.tv_manager_citys)
     private TextView tv_manager_citys;
 
@@ -163,7 +160,6 @@ public class HeFenWeatherActivity extends BaseActivity implements  SwipeRefreshL
         swipeRefreshLayout.setProgressViewEndTarget(true,250);//move down progress
         setRefreshing(true);
 
-        ll_left.setBackground(getDrawable(R.drawable.left_background));
     }
 
     private void initLocationClientOptin() {

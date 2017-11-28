@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape  xmlns:android="http://schemas.android.com/apk/res/android">
     <gradient android:name="poweroff_background"
-        android:startColor="#afcbf2eb"
+        android:startColor="#afd7f5f0"
         android:endColor="#f1cccccc"
         android:angle="-90"
         />

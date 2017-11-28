@@ -2,6 +2,7 @@ package com.zl.hefenweather.activity;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -58,11 +59,15 @@ public class CitysActivity extends BaseActivity {
     private List<?> citysList = new ArrayList();
 
     @BindView(R.id.rcv_citys)
-    private RecyclerView recyclerView;
+    private RecyclerView recyclerViewCity;
 
     private AreaAdapter mAreaAdapter = null;
 
     private String currentProvshi = null;
+
+    private String mCityID = "city_id";
+    private String mProvshiID = "provshi_id";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,37 +75,51 @@ public class CitysActivity extends BaseActivity {
 
         requestQueue = Volley.newRequestQueue(this.getApplicationContext());
 
-        getLocationData(null);
+        String p = getIntent().getStringExtra(mProvshiID);
+        Log.d(TAG,"onCreate p=" +p);
+        getLocationData(p);
 
     }
 
     public void initView(){
         LinearLayoutManager layoutManager = new FullyLinearLayoutManager(this );
         layoutManager.setOrientation(OrientationHelper.VERTICAL);
-        recyclerView.setLayoutManager(layoutManager);
+        recyclerViewCity.setLayoutManager(layoutManager);
+        recyclerViewCity.setItemAnimator( new DefaultItemAnimator());
+
         mAreaAdapter = new AreaAdapter(this.getApplicationContext(),citysList);
         mAreaAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view) {
                 Log.d(TAG,"adapter onItemClick provshiId=" +view.getTag() +
                         " currentLoccationLevel=" + currentLoccationLevel);
+                Intent intent = new Intent();
                 if(currentLoccationLevel == CITY_LEVEL){
-                    getHttpData((String)view.getTag());
+                    //getHttpData((String)view.getTag());
+                    //intent.setClass(this,)
+                    intent.putExtra(mCityID,(String)view.getTag());
+                    intent.setClass(CitysActivity.this.getApplicationContext(),CitysActivity.class);
                 }else if(currentLoccationLevel == PROVSHI_LEVEL){
-                    updateView((String) view.getTag());
+                    //updateView((String) view.getTag());
+                    intent.putExtra(mProvshiID,(String)view.getTag());
+                    intent.setClass(CitysActivity.this.getApplicationContext(),CitysActivity.class);
                 }
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
             }
         });
-        recyclerView.setAdapter(mAreaAdapter);
-        recyclerView.setItemAnimator( new DefaultItemAnimator());
 
+        recyclerViewCity.setAdapter(mAreaAdapter);
     }
 
     public void getLocationData(final String provshiID){
         if(provshiID !=null && provshiID.trim().length() >0){
             List<City> list = WeatherUtils.getCitysFromDB(CitysActivity.this,"" +provshiID);
             if(list != null && list.size() >0){
-                updateView(provshiID);
+                currentLoccationLevel = CITY_LEVEL;
+                citysList = list;
+                //updateView(provshiID);
+                initView();
             }else{
                 getHttpData(provshiID);
             }
@@ -140,7 +159,14 @@ public class CitysActivity extends BaseActivity {
                     WeatherUtils.handleProvshiResponse(CitysActivity.this,response);
                 }
 
-                updateView("" +provshiID);
+                //updateView("" +provshiID);
+                if(currentLoccationLevel == PROVSHI_LEVEL){
+                    Intent intent = new Intent();
+                    intent.putExtra(mProvshiID,provshiID);
+                    intent.setClass(CitysActivity.this.getApplicationContext(),CitysActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                }
             }
         }, new Response.ErrorListener() {
             @Override
@@ -183,12 +209,12 @@ public class CitysActivity extends BaseActivity {
         }
     }
 
-
     private final int PROVSHI_LEVEL = 0;
     private final int CITY_LEVEL = 1;
+    private int currentLoccationLevel = PROVSHI_LEVEL;
+
     private List<?> areas = new ArrayList();
 
-    private int currentLoccationLevel = PROVSHI_LEVEL;
 
     class AreaAdapter extends RecyclerView.Adapter<AreaViewHolder> implements View.OnClickListener {
         private OnItemClickListener mOnItemClickListener = null;

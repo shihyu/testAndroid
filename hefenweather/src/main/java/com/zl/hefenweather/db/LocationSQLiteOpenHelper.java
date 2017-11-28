@@ -17,7 +17,7 @@ public class LocationSQLiteOpenHelper extends SQLiteOpenHelper {
 
     private static LocationSQLiteOpenHelper mDataBaseHelper = null;
 
-    private final static boolean drop = true;
+    private final static boolean drop = false;
 
     private static final String DROP_TABLE = "drop table if exists Provshi;\ndrop table if exists Citys";
 

@@ -11,9 +11,6 @@ import com.doov.guaguaka.GuaGuaKaActivity;
 import com.doov.luckypanel.LuckyPanelActivity;
 import com.doov.wuzhiqi.WuZhiQiActivity;
 import com.example.demo.animation.AnimationActivity;
-import com.example.demo.annotation.BindView;
-import com.example.demo.annotation.ContentView;
-import com.example.demo.annotation.OnClick;
 import com.example.demo.binder.AIDLActivity;
 import com.example.demo.binder.DownloadActivity;
 import com.example.demo.handler.HandlerActivity;
@@ -29,6 +26,9 @@ import com.example.demo.shake.ShakeActivity;
 import com.example.demo.widget.BaseActivity;
 import com.example.demo.widget.TouchActivity;
 import com.example.demo.widget.slidingdrawer.SlidingDrawerDemo;
+import com.zl.annotation.BindView;
+import com.zl.annotation.ContentView;
+import com.zl.annotation.OnClick;
 
 @ContentView(R.layout.activity_main)
 public class MainActivity extends BaseActivity implements OnClickListener {
