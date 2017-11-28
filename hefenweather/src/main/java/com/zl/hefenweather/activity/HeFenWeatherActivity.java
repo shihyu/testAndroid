@@ -65,7 +65,7 @@ public class HeFenWeatherActivity extends BaseActivity implements  SwipeRefreshL
 
     public static final String TAG = WeatherConstant.TAG;
 
-    private final boolean DEBUG_RESPONSE = false;
+    private final boolean DEBUG_RESPONSE = true;
 
     public LocationClient mLocationClient = null;
     private MyLocationListener myListener = new MyLocationListener();
@@ -352,15 +352,18 @@ public class HeFenWeatherActivity extends BaseActivity implements  SwipeRefreshL
         if(w !=null && w.getHeWeather6() != null){
             mHourly = w.getHeWeather6().get(0).getHourly();
 
-            DisplayMetrics dm = new DisplayMetrics();
-            getWindowManager().getDefaultDisplay().getMetrics(dm);
-            float density = dm.density;
-            int ll_width = (int) (60 * density * mHourly.size());
-            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(ll_width, RelativeLayout.LayoutParams.WRAP_CONTENT);
-            gv_hourly.setLayoutParams(params);
-            gv_hourly.setNumColumns(mHourly.size());
+            if(mHourly != null){
+                DisplayMetrics dm = new DisplayMetrics();
+                getWindowManager().getDefaultDisplay().getMetrics(dm);
+                float density = dm.density;
+                int ll_width = (int) (60 * density * mHourly.size());
+                RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(ll_width, RelativeLayout.LayoutParams.WRAP_CONTENT);
+                gv_hourly.setLayoutParams(params);
+                gv_hourly.setNumColumns(mHourly.size());
 
-            gv_hourly.setAdapter(new ScrollViewAdapter(HeFenWeatherActivity.this,mHourly));
+                gv_hourly.setAdapter(new ScrollViewAdapter(HeFenWeatherActivity.this,mHourly));
+            }
+
         }else{
             Log.d(TAG,"updateHourlyView parmas null");
         }
