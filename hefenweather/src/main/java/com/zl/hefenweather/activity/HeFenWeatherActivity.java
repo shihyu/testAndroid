@@ -100,7 +100,6 @@ public class HeFenWeatherActivity extends BaseActivity implements  SwipeRefreshL
     @BindView(R.id.ll_left)
     private ViewGroup ll_left;
 
-
     @BindView(R.id.tv_manager_citys)
     private TextView tv_manager_citys;
 

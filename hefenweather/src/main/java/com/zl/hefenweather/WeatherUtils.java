@@ -11,6 +11,13 @@ import android.renderscript.Element;
 import android.renderscript.RenderScript;
 import android.renderscript.ScriptIntrinsicBlur;
 
+import com.zl.hefenweather.db.LocationDB;
+import com.zl.hefenweather.entity.City;
+import com.zl.hefenweather.entity.Provshi;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by zy1373 on 2017-11-20.
  */
@@ -228,12 +235,55 @@ public class WeatherUtils {
     }
 
 
-    public static void handleProvshiResponse(String response){
+    public static void handleProvshiResponse(Context context,String response){
+        if(response != null){
+            ArrayList<Provshi> list = new ArrayList<Provshi>();
+            response = response.substring(1,response.length()-2);
+            String[] p = response.split(",");
+            for (String s :
+                    p) {
+                String[] str = s.split(":");
+                Provshi provshi = new Provshi(str[0].replace("\"",""),
+                        str[1].replace("\"",""));
+                list.add(provshi);
+            }
+            if(list.size() >0){
+                new LocationDB(context).addProvshis(list);
 
+            }
+        }
     }
-    public static void handleCitysResponse(String response){
 
+    public static void handleCitysResponse(Context context,String response,String provshiID){
+        if(response != null){
+            ArrayList<City> list = new ArrayList<City>();
+            response = response.substring(1,response.length()-2);
+            String[] p = response.split(",");
+            for (String s :
+                    p) {
+                String[] str = s.split(":");
+                City c = new City(str[0].replace("\"",""),
+                        str[1].replace("\"",""),
+                        provshiID.replace("\"",""));
+            }
+            if(list.size() >0){
+                new LocationDB(context).addCitys(list);
+
+            }
+        }
     }
 
+
+    public static List<City> getCitysFromDB(Context context){
+        return new LocationDB(context).getCityList();
+    }
+
+    public static List<City> getCitysFromDB(Context context,String provshiID){
+        return new LocationDB(context).getCityList(provshiID);
+    }
+
+    public static List<Provshi> getProvshiFromDB(Context context){
+        return new LocationDB(context).getProvshiList();
+    }
 
 }

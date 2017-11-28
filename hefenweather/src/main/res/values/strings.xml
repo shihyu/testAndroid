@@ -4,5 +4,5 @@
     <string name="weather_info">天气预报</string>
     <string name="tv_hum_prefix">湿度:</string>
     <string name="baidu_location_ak">xUFHFEISxgVkHhk8PfPrYHn5stfC0lPo</string>
-    <string name="title_activity_citys">CitysActivity</string>
+    <string name="title_activity_citys">城市管理-选择城市</string>
 </resources>
