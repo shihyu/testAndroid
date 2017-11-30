@@ -25,7 +25,7 @@
         android:allowBackup="true"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@android:style/Theme.Material.Light">
+        android:theme="@style/apptheme">
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="@string/baidu_location_ak" />
@@ -50,7 +50,6 @@
         <activity
             android:name=".activity.CitysActivity"
             android:label="@string/title_activity_citys">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
