@@ -9,9 +9,13 @@
 
     <style name="apptheme" parent="@android:style/Theme.Material.Light">
         <!-- 状态栏背景 -->
-        <item name="android:colorPrimaryDark">#C7EDCC</item>
+        <item name="android:colorPrimaryDark">@color/default_status_bar_color</item>
         <!-- 标题栏背景 -->
-        <item name="android:colorPrimary">#C7EDCC</item>
+        <item name="android:colorPrimary">@color/default_status_bar_color</item>
+    </style>
+
+    <style name="app_list_theme" parent="@style/apptheme">
+        <item name="android:listDivider">@drawable/recycle_view_divider</item>
     </style>
 
     <style name="weather_hour_style">

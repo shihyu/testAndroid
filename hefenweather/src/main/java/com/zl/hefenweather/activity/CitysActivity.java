@@ -24,6 +24,7 @@ import com.android.volley.toolbox.Volley;
 import com.zl.annotation.AnnotationUtils;
 import com.zl.annotation.BindView;
 import com.zl.annotation.ContentView;
+import com.zl.hefenweather.DefaultItemDecoration;
 import com.zl.hefenweather.FullyLinearLayoutManager;
 import com.zl.hefenweather.R;
 import com.zl.hefenweather.WeatherUtils;
@@ -109,6 +110,8 @@ public class CitysActivity extends BaseActivity {
             }
         });
 
+        recyclerViewCity.addItemDecoration(new DefaultItemDecoration(this.getApplicationContext(),
+                LinearLayoutManager.HORIZONTAL));
         recyclerViewCity.setAdapter(mAreaAdapter);
     }
 

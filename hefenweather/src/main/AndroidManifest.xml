@@ -49,6 +49,7 @@
         </activity>
         <activity
             android:name=".activity.CitysActivity"
+            android:theme="@style/app_list_theme"
             android:label="@string/title_activity_citys">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
