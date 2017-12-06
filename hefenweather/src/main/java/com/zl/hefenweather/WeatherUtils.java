@@ -10,6 +10,7 @@ import android.renderscript.Allocation;
 import android.renderscript.Element;
 import android.renderscript.RenderScript;
 import android.renderscript.ScriptIntrinsicBlur;
+import android.util.Log;
 
 import com.zl.hefenweather.db.LocationDB;
 import com.zl.hefenweather.entity.City;
@@ -23,6 +24,9 @@ import java.util.List;
  */
 
 public class WeatherUtils {
+    private final static String TAG = WeatherConstant.TAG;
+
+
     public static Drawable getCoudDrawbale(Resources resources, int cond_txt_d){
 
        /* public final static int h100 = R.drawable.h100;
@@ -255,18 +259,32 @@ public class WeatherUtils {
     }
 
     public static void handleCitysResponse(Context context,String response,String provshiID){
+        Log.d(TAG,"handleCitysResponse response=" +response + " provshiID=" +provshiID);
         if(response != null){
             ArrayList<City> list = new ArrayList<City>();
             response = response.substring(1,response.length()-2);
             String[] p = response.split(",");
-            for (String s :
-                    p) {
-                String[] str = s.split(":");
-                City c = new City(str[0].replace("\"",""),
-                        str[1].replace("\"",""),
-                        provshiID.replace("\"",""));
-                list.add(c);
+            if(p.length >1){
+                for (String s :
+                        p) {
+                    String[] str = s.split(":");
+                    if(str.length >=2){
+                        City c = new City(str[0].replace("\"",""),
+                                str[1].replace("\"",""),
+                                provshiID.replace("\"",""));
+                        list.add(c);
+                    }
+                }
+            }else{
+                String[] str = response.split(":");
+                if(str.length >=2){
+                    City c = new City(str[0].replace("\"",""),
+                            str[1].replace("\"",""),
+                            provshiID);
+                    list.add(c);
+                }
             }
+
             if(list.size() >0){
                 new LocationDB(context).addCitys(list);
 
@@ -277,6 +295,10 @@ public class WeatherUtils {
 
     public static List<City> getCitysFromDB(Context context){
         return new LocationDB(context).getCityList();
+    }
+
+    public static City getCityFromDB(Context context,String cityID,String provshiID){
+        return new LocationDB(context).getCityByID(cityID,provshiID);
     }
 
     public static List<City> getCitysFromDB(Context context,String provshiID){

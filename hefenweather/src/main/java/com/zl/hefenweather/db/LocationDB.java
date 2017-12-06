@@ -90,6 +90,16 @@ public class LocationDB {
         return list;
     }
 
+    public City getCityByID(String cityID,String provshiID){
+        City city = new City();
+        Cursor cursor = db.query(LocationSQLiteOpenHelper.TABLE_CITYS,null,"city_id=? and provshi_id=?",
+                new String[]{cityID,provshiID},null,null,null);
+        while (cursor.moveToNext()){
+            city = new City(cursor.getString(1),cursor.getString(2),cursor.getString(3));
+        }
+        return city;
+    }
+
     public void addCity(City city){
         if(city != null && city.cityId != null){
             ContentValues cv = new ContentValues();

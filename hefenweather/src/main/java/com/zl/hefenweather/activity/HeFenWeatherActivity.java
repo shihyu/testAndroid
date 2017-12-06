@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -115,30 +117,78 @@ public class HeFenWeatherActivity extends BaseActivity implements  SwipeRefreshL
     private Toast mToast;
 
 
+
+    private final int MSG_ALL_WEATHER = 1101;
+    private final int MSG_NOW_WEATHER = 1102;
+    private final int MSG_HOURLY_WEATHER = 1103;
+    private final int MSG_FORCAST_WEATHER = 1104;
+    private final String MSG_LOCATION_KEY = "current_location";
+
+    private MyHandler h = null;
+
+    private String  mChooseCityId = null;
+    private String  mChooseCityName = null;
+
+
+    class MyHandler extends Handler{
+        @Override
+        public void handleMessage(Message msg) {
+            Location locattion = (Location) msg.getData().getParcelable(MSG_LOCATION_KEY);
+            switch (msg.what){
+                case MSG_ALL_WEATHER:
+                    getNowWeatherInfo(locattion);
+                    getHourlyWeather(locattion);
+                    getForcastWeather(locattion);
+                    break;
+                case MSG_NOW_WEATHER:
+                    getNowWeatherInfo(locattion);
+                    break;
+                case MSG_HOURLY_WEATHER:
+                    getHourlyWeather(locattion);
+                    break;
+                case MSG_FORCAST_WEATHER:
+                    getForcastWeather(locattion);
+                    break;
+            }
+        }
+    }
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         initView();
 
+        h = new MyHandler();
+        mChooseCityId = getIntent().getStringExtra(CitysActivity.CITY_ID_KEY);
+        mChooseCityName = getIntent().getStringExtra(CitysActivity.CITY_NAME_KEY);
+        Log.d(TAG,"onCreate chooseCityId=" + mChooseCityId +
+                " mChooseCityName=" + mChooseCityName);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
 
-         /*mCurrentLocation = (Location) SharedPreferenceUtil.getObject(this,SharedPreferenceUtil.KEY_BAIDU_LOCATION);
-        Weather weather_n = (Weather)SharedPreferenceUtil.getObject(this,SharedPreferenceUtil.KEY_NOW_WEATHER);
-        Weather weather_h = (Weather)SharedPreferenceUtil.getObject(this,SharedPreferenceUtil.KEY_HOURLY_WEATHER);
-        Weather weather_f = (Weather)SharedPreferenceUtil.getObject(this,SharedPreferenceUtil.KEY_FORCAT_WEATHER);
+        if(mChooseCityId !=null && mChooseCityName != null){//已经手动选择城市
+            mCurrentLocation = new Location();
+            mCurrentLocation.city = mChooseCityName;
+            mCurrentLocation.cityCode = mChooseCityId;
+            updateLocationView(mCurrentLocation,true);
+            getCityWeather(mCurrentLocation);
+        }else{
+            mCurrentLocation = (Location) SharedPreferenceUtil.getObject(this,SharedPreferenceUtil.KEY_BAIDU_LOCATION);
+            Weather weather_n = (Weather)SharedPreferenceUtil.getObject(this,SharedPreferenceUtil.KEY_NOW_WEATHER);
+            Weather weather_h = (Weather)SharedPreferenceUtil.getObject(this,SharedPreferenceUtil.KEY_HOURLY_WEATHER);
+            Weather weather_f = (Weather)SharedPreferenceUtil.getObject(this,SharedPreferenceUtil.KEY_FORCAT_WEATHER);
+            updateLocationView(mCurrentLocation,true);
+            updateNowWeatherView(weather_n);
+            updateForcastListView(weather_f);
+            updateHourlyView(weather_h);
 
-       updateLocationView(mCurrentLocation,true);
-        updateNowWeatherView(weather_n);
-        updateForcastListView(weather_f);
-        updateHourlyView(weather_h);*/
+            initLocationClient();
+            initLocationClientOptin();
+        }
 
-        initLocationClient();
-        initLocationClientOptin();
 
     }
 
@@ -199,6 +249,7 @@ public class HeFenWeatherActivity extends BaseActivity implements  SwipeRefreshL
                 break;
         }
     }
+
     class MyLocationListener extends BDAbstractLocationListener {
         @Override
         public void onReceiveLocation(BDLocation location) {
@@ -227,12 +278,21 @@ public class HeFenWeatherActivity extends BaseActivity implements  SwipeRefreshL
 
             updateLocationView(mCurrentLocation);
 
-            getNowWeatherInfo(mCurrentLocation);
-            getHourlyWeather(mCurrentLocation);
-            getForcastWeather(mCurrentLocation);
+            getCityWeather(mCurrentLocation);
 
             SharedPreferenceUtil.saveOject(getApplicationContext(),mCurrentLocation,SharedPreferenceUtil.KEY_BAIDU_LOCATION);
         }
+    }
+
+    private void getCityWeather(Location location) {
+        if(h == null) h = new MyHandler();
+
+        Message msg = h.obtainMessage();
+        msg.what = MSG_ALL_WEATHER;
+        Bundle bundle = msg.getData();
+        bundle.putParcelable(MSG_LOCATION_KEY,location);
+        msg.setData(bundle);
+        h.sendMessage(msg);
     }
 
     private void updateLocationView(Location location) {
@@ -267,7 +327,10 @@ public class HeFenWeatherActivity extends BaseActivity implements  SwipeRefreshL
     @Override
     protected void onStop() {
         super.onStop();
-        mLocationClient.stop();
+        if(mLocationClient != null){
+            mLocationClient.stop();
+        }
+
     }
 
     public void getNowWeatherInfo(Location location){
@@ -613,5 +676,4 @@ public class HeFenWeatherActivity extends BaseActivity implements  SwipeRefreshL
         },0);
 
     }
-
 }

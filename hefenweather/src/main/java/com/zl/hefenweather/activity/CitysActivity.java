@@ -64,10 +64,11 @@ public class CitysActivity extends BaseActivity {
 
     private AreaAdapter mAreaAdapter = null;
 
-    private String currentProvshi = null;
+    private String currentProvshiID = null;
 
-    private String mCityID = "city_id";
-    private String mProvshiID = "provshi_id";
+    public final static String CITY_ID_KEY = "city_id";
+    public final static String CITY_NAME_KEY = "city_name";
+    public final static String PROVSHI_KEY = "provshi_id";
 
 
     @Override
@@ -76,9 +77,9 @@ public class CitysActivity extends BaseActivity {
 
         requestQueue = Volley.newRequestQueue(this.getApplicationContext());
 
-        String p = getIntent().getStringExtra(mProvshiID);
-        Log.d(TAG,"onCreate p=" +p);
-        getLocationData(p);
+        currentProvshiID = getIntent().getStringExtra(PROVSHI_KEY);
+        Log.d(TAG,"onCreate p=" + currentProvshiID);
+        getLocationData(currentProvshiID);
 
     }
 
@@ -92,21 +93,14 @@ public class CitysActivity extends BaseActivity {
         mAreaAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view) {
-                Log.d(TAG,"adapter onItemClick provshiId=" +view.getTag() +
+                Log.d(TAG,"adapter onItemClick Id=" + view.getTag() +
                         " currentLoccationLevel=" + currentLoccationLevel);
-                Intent intent = new Intent();
                 if(currentLoccationLevel == CITY_LEVEL){
-                    //getHttpData((String)view.getTag());
-                    //intent.setClass(this,)
-                    intent.putExtra(mCityID,(String)view.getTag());
-                    intent.setClass(CitysActivity.this.getApplicationContext(),CitysActivity.class);
-                }else if(currentLoccationLevel == PROVSHI_LEVEL){
-                    //updateView((String) view.getTag());
-                    intent.putExtra(mProvshiID,(String)view.getTag());
-                    intent.setClass(CitysActivity.this.getApplicationContext(),CitysActivity.class);
+                    startHeFenWeatherActivity((String)view.getTag());
+                }else if(currentLoccationLevel == PROVSHI_LEVEL){//指的省份的城市列表
+                    startCitysActivity((String)view.getTag());
                 }
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
+
             }
         });
 
@@ -116,12 +110,11 @@ public class CitysActivity extends BaseActivity {
     }
 
     public void getLocationData(final String provshiID){
-        if(provshiID !=null && provshiID.trim().length() >0){
+        if(provshiID != null && provshiID.trim().length() >0){
             List<City> list = WeatherUtils.getCitysFromDB(CitysActivity.this,"" +provshiID);
             if(list != null && list.size() >0){
                 currentLoccationLevel = CITY_LEVEL;
                 citysList = list;
-                //updateView(provshiID);
                 initView();
             }else{
                 getHttpData(provshiID);
@@ -155,21 +148,15 @@ public class CitysActivity extends BaseActivity {
         StringRequest request = new MyStringRequest(url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                //Log.d(TAG,"onResponse cityID= " + provshiID + " response=" +response);
+                Log.d(TAG,"onResponse cityID= " + provshiID + " response=" +response);
                 if(provshiID.trim().length() >0){//指定的省份的数据
                     WeatherUtils.handleCitysResponse(CitysActivity.this,response,""+provshiID);
-                }else{
+                    startCitysActivity(provshiID);
+                }else{//全部省份
                     WeatherUtils.handleProvshiResponse(CitysActivity.this,response);
+                    getLocationData(null);
                 }
 
-                //updateView("" +provshiID);
-                if(currentLoccationLevel == PROVSHI_LEVEL){
-                    Intent intent = new Intent();
-                    intent.putExtra(mProvshiID,provshiID);
-                    intent.setClass(CitysActivity.this.getApplicationContext(),CitysActivity.class);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    startActivity(intent);
-                }
             }
         }, new Response.ErrorListener() {
             @Override
@@ -177,12 +164,30 @@ public class CitysActivity extends BaseActivity {
                 Log.d(TAG,"onErrorResponse " +error.getMessage(),error);
                 if(error instanceof TimeoutError){
                     showToast("网络超时,获取数据失败");
-
                 }
             }
         });
 
         requestQueue.add(request);
+    }
+
+    private void startHeFenWeatherActivity(String cityId) {
+        Intent intent = new Intent();
+        City c = WeatherUtils.getCityFromDB(this.getApplicationContext(),cityId,currentProvshiID);
+        intent.putExtra(CITY_ID_KEY,cityId);
+        intent.putExtra(CITY_NAME_KEY,c.cityName);
+        intent.putExtra(PROVSHI_KEY, c.provshiID);
+        intent.setClass(this.getApplicationContext(),HeFenWeatherActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
+    }
+
+    private void startCitysActivity(String provshiID) {
+        Intent intent = new Intent();
+        intent.putExtra(PROVSHI_KEY,provshiID);
+        intent.setClass(this.getApplicationContext(),CitysActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 
 
@@ -241,7 +246,7 @@ public class CitysActivity extends BaseActivity {
 
         @Override
         public void onBindViewHolder(AreaViewHolder holder, int position) {
-            Log.d(TAG,"onBindViewHolder currentLoccationLevel" + currentLoccationLevel);
+            Log.d(TAG,"onBindViewHolder currentLoccationLevel=" + currentLoccationLevel);
             if(currentLoccationLevel == CITY_LEVEL){
                 City c = (City)areas.get(position);
                 holder.tv_city_name_item.setText(c.cityName);
