@@ -89,6 +89,14 @@ public class CitysActivity extends BaseActivity {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(requestQueue == null){
+            requestQueue = Volley.newRequestQueue(this.getApplicationContext());
+        }
+    }
+
     public void initView(){
         LinearLayoutManager layoutManager = new FullyLinearLayoutManager(this );
         layoutManager.setOrientation(OrientationHelper.VERTICAL);

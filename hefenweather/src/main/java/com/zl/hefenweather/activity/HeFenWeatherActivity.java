@@ -162,12 +162,15 @@ public class HeFenWeatherActivity extends BaseActivity implements  SwipeRefreshL
         Log.d(TAG,"onCreate chooseCityId=" + mChooseCityId +
                 " mChooseCityName=" + mChooseCityName);
 
-        mRequestQueue = Volley.newRequestQueue(this);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
+
+        if(mRequestQueue == null){
+            mRequestQueue = Volley.newRequestQueue(this);
+        }
 
         if(mChooseCityId !=null && mChooseCityName != null){//已经手动选择城市
             mCurrentLocation = new Location();
@@ -333,7 +336,7 @@ public class HeFenWeatherActivity extends BaseActivity implements  SwipeRefreshL
     @Override
     protected void onStop() {
         super.onStop();
-        
+
         if(mLocationClient != null){
             mLocationClient.stop();
             mLocationOption = null;
