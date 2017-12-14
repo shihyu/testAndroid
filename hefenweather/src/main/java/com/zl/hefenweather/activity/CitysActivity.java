@@ -71,6 +71,12 @@ public class CitysActivity extends BaseActivity {
     public final static String PROVSHI_KEY = "provshi_id";
 
 
+    private final int PROVSHI_LEVEL = 0;
+    private final int CITY_LEVEL = 1;
+    private int currentLoccationLevel = PROVSHI_LEVEL;
+
+    private List<?> areas = new ArrayList();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -149,9 +155,10 @@ public class CitysActivity extends BaseActivity {
             @Override
             public void onResponse(String response) {
                 Log.d(TAG,"onResponse cityID= " + provshiID + " response=" +response);
-                if(provshiID.trim().length() >0){//指定的省份的数据
+                if(provshiID != null && provshiID.trim().length() >0){//指定的省份的数据
                     WeatherUtils.handleCitysResponse(CitysActivity.this,response,""+provshiID);
-                    startCitysActivity(provshiID);
+                    //startCitysActivity(provshiID);
+                    getLocationData(provshiID);
                 }else{//全部省份
                     WeatherUtils.handleProvshiResponse(CitysActivity.this,response);
                     getLocationData(null);
@@ -217,12 +224,14 @@ public class CitysActivity extends BaseActivity {
         }
     }
 
-    private final int PROVSHI_LEVEL = 0;
-    private final int CITY_LEVEL = 1;
-    private int currentLoccationLevel = PROVSHI_LEVEL;
-
-    private List<?> areas = new ArrayList();
-
+    @Override
+    protected void onStop() {
+        super.onStop();
+        if(requestQueue != null){
+            requestQueue.stop();
+            requestQueue = null;
+        }
+    }
 
     class AreaAdapter extends RecyclerView.Adapter<AreaViewHolder> implements View.OnClickListener {
         private OnItemClickListener mOnItemClickListener = null;

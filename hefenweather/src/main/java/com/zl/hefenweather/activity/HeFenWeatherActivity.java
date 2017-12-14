@@ -108,15 +108,12 @@ public class HeFenWeatherActivity extends BaseActivity implements  SwipeRefreshL
     @BindView(R.id.tv_about_me)
     private TextView tv_about_me;
 
-
-
     private Location mCurrentLocation;
+    private LocationClientOption mLocationOption;
 
     private List<DailyForecast> mDailyForecast;
     private List<Hourly> mHourly;
     private Toast mToast;
-
-
 
     private final int MSG_ALL_WEATHER = 1101;
     private final int MSG_NOW_WEATHER = 1102;
@@ -129,6 +126,7 @@ public class HeFenWeatherActivity extends BaseActivity implements  SwipeRefreshL
     private String  mChooseCityId = null;
     private String  mChooseCityName = null;
 
+    private RequestQueue mRequestQueue = null;
 
     class MyHandler extends Handler{
         @Override
@@ -163,6 +161,8 @@ public class HeFenWeatherActivity extends BaseActivity implements  SwipeRefreshL
         mChooseCityName = getIntent().getStringExtra(CitysActivity.CITY_NAME_KEY);
         Log.d(TAG,"onCreate chooseCityId=" + mChooseCityId +
                 " mChooseCityName=" + mChooseCityName);
+
+        mRequestQueue = Volley.newRequestQueue(this);
     }
 
     @Override
@@ -187,16 +187,19 @@ public class HeFenWeatherActivity extends BaseActivity implements  SwipeRefreshL
 
             initLocationClient();
             initLocationClientOptin();
+
         }
-
-
     }
 
     private void initLocationClient() {
-        mLocationClient = new LocationClient(getApplicationContext());
-        //声明LocationClient类
-        mLocationClient.registerLocationListener(myListener);
+        if(mLocationClient == null){
+            //声明LocationClient类
+            mLocationClient = new LocationClient(getApplicationContext());
+        }
+
         //注册监听函数
+        mLocationClient.registerLocationListener(myListener);
+
     }
 
     public void initView(){
@@ -213,13 +216,15 @@ public class HeFenWeatherActivity extends BaseActivity implements  SwipeRefreshL
     }
 
     private void initLocationClientOptin() {
-        LocationClientOption option = new LocationClientOption();
+        if(mLocationOption == null){
+            mLocationOption = new LocationClientOption();
+        }
 
-        option.setIsNeedAddress(true);
+        mLocationOption.setIsNeedAddress(true);
         //可选，是否需要地址信息，默认为不需要，即参数为false
         //如果开发者需要获得当前点的地址信息，此处必须为true
 
-        mLocationClient.setLocOption(option);
+        mLocationClient.setLocOption(mLocationOption);
         //mLocationClient为第二步初始化过的LocationClient对象
         //需将配置好的LocationClientOption对象，通过setLocOption方法传递给LocationClient对象使用
         //更多LocationClientOption的配置，请参照类参考中LocationClientOption类的详细说明
@@ -232,8 +237,9 @@ public class HeFenWeatherActivity extends BaseActivity implements  SwipeRefreshL
         Log.d(TAG,"onRefresh");
         tv_district.setCompoundDrawables(getDrawable(R.drawable.ic_locate_plane),null,null,null);
 
-        initLocationClient();
-        initLocationClientOptin();
+        /*initLocationClient();
+        initLocationClientOptin();*/
+        mLocationClient.requestLocation();
     }
 
     @OnClick({R.id.tv_setttings,R.id.tv_about_me,R.id.tv_manager_citys})
@@ -327,8 +333,16 @@ public class HeFenWeatherActivity extends BaseActivity implements  SwipeRefreshL
     @Override
     protected void onStop() {
         super.onStop();
+        
         if(mLocationClient != null){
             mLocationClient.stop();
+            mLocationOption = null;
+            mLocationClient = null;
+        }
+
+        if(mRequestQueue != null){
+            mRequestQueue.stop();
+            mRequestQueue = null;
         }
 
     }
@@ -339,7 +353,6 @@ public class HeFenWeatherActivity extends BaseActivity implements  SwipeRefreshL
         String url = WeatherConstant.WEATHER_NOW_URL + param;
         Log.d(TAG, "getNowWeatherInfo: url=" + url);
 
-        RequestQueue mQueue= Volley.newRequestQueue(this);
         MyStringRequest stringRequest = new MyStringRequest(url, new Response.Listener<String>() {
             @Override
             public void onResponse(String s) {
@@ -362,7 +375,7 @@ public class HeFenWeatherActivity extends BaseActivity implements  SwipeRefreshL
             }
         });
 
-        mQueue.add(stringRequest);
+        mRequestQueue.add(stringRequest);
     }
 
     private void updateNowWeatherView(Weather w) {
@@ -384,7 +397,6 @@ public class HeFenWeatherActivity extends BaseActivity implements  SwipeRefreshL
         String url = WeatherConstant.WEATHER_HOURLY_URL + param;
         Log.d(TAG, "getHourlyWeather: url=" + url);
 
-        RequestQueue mQueue= Volley.newRequestQueue(this);
         MyStringRequest stringRequest = new MyStringRequest(url, new Response.Listener<String>() {
             @Override
             public void onResponse(String s) {
@@ -408,7 +420,7 @@ public class HeFenWeatherActivity extends BaseActivity implements  SwipeRefreshL
             }
         });
 
-        mQueue.add(stringRequest);
+        mRequestQueue.add(stringRequest);
     }
 
     private void updateHourlyView(Weather w) {
@@ -439,7 +451,6 @@ public class HeFenWeatherActivity extends BaseActivity implements  SwipeRefreshL
         String url = WeatherConstant.WEATHER_FORECAST_URL + param;
         Log.d(TAG, "getForcastWeather: url=" + url);
 
-        RequestQueue mQueue= Volley.newRequestQueue(this);
         MyStringRequest stringRequest = new MyStringRequest(url, new Response.Listener<String>() {
             @Override
             public void onResponse(String s) {
@@ -462,7 +473,7 @@ public class HeFenWeatherActivity extends BaseActivity implements  SwipeRefreshL
             }
         });
 
-        mQueue.add(stringRequest);
+        mRequestQueue.add(stringRequest);
     }
 
     private void updateForcastListView(Weather w) {
