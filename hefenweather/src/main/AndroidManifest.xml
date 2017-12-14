@@ -33,12 +33,12 @@
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
-            android:process=":remote"></service>
+            android:process=":remote" />
 
         <activity
             android:name=".activity.HeFenWeatherActivity"
-            android:theme="@style/TranslucentTheme"
-            android:icon="@drawable/weather_icon">
+            android:icon="@drawable/weather_icon"
+            android:theme="@style/TranslucentTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="com.zl.hefenweather" />
@@ -49,8 +49,15 @@
         </activity>
         <activity
             android:name=".activity.CitysActivity"
-            android:theme="@style/app_list_theme"
-            android:label="@string/title_activity_citys">
+            android:label="@string/title_activity_citys"
+            android:theme="@style/app_list_theme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.AboutActivity"
+            android:label="@string/about_us_titles">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>

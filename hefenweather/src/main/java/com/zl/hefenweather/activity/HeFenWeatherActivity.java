@@ -250,8 +250,10 @@ public class HeFenWeatherActivity extends BaseActivity implements  SwipeRefreshL
 
         switch (v.getId()){
             case R.id.tv_setttings:
-            case R.id.tv_about_me:
                 showToast("暂无功能,开发中...");
+                break;
+            case R.id.tv_about_me:
+                startActivity(new Intent(this,AboutActivity.class));
                 break;
             case R.id.tv_manager_citys:
                 startActivity(new Intent(this,CitysActivity.class));

@@ -177,7 +177,7 @@
                 android:layout_marginBottom="50dp"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentBottom="true"
-                android:text="关于我们"/>
+                android:text="@string/about_us_titles"/>
         </RelativeLayout>
     </android.support.v4.widget.DrawerLayout>
 
