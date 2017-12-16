@@ -252,7 +252,7 @@ public class WeatherUtils {
                 list.add(provshi);
             }
             if(list.size() >0){
-                new LocationDB(context).addProvshis(list);
+                LocationDB.getInstance(context).addProvshis(list);
 
             }
         }
@@ -286,7 +286,7 @@ public class WeatherUtils {
             }
 
             if(list.size() >0){
-                new LocationDB(context).addCitys(list);
+                LocationDB.getInstance(context).addCitys(list);
 
             }
         }
@@ -294,19 +294,19 @@ public class WeatherUtils {
 
 
     public static List<City> getCitysFromDB(Context context){
-        return new LocationDB(context).getCityList();
+        return LocationDB.getInstance(context).getCityList();
     }
 
     public static City getCityFromDB(Context context,String cityID,String provshiID){
-        return new LocationDB(context).getCityByID(cityID,provshiID);
+        return LocationDB.getInstance(context).getCityByID(cityID,provshiID);
     }
 
     public static List<City> getCitysFromDB(Context context,String provshiID){
-        return new LocationDB(context).getCityList(provshiID);
+        return LocationDB.getInstance(context).getCityList(provshiID);
     }
 
     public static List<Provshi> getProvshiFromDB(Context context){
-        return new LocationDB(context).getProvshiList();
+        return LocationDB.getInstance(context).getProvshiList();
     }
 
 }

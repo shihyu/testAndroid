@@ -40,6 +40,15 @@ public class LocationSQLiteOpenHelper extends SQLiteOpenHelper {
         super(context, name, factory, version);
     }
 
+
+    public static LocationSQLiteOpenHelper getInstance(Context context){
+        if(mDataBaseHelper == null){
+            mDataBaseHelper = new LocationSQLiteOpenHelper(context,DBName,null,version);;
+        }
+
+        return  mDataBaseHelper;
+    }
+
     @Override
     public void onCreate(SQLiteDatabase db) {
         Log.d(TAG,"onCreate drop=" +drop);
@@ -60,14 +69,6 @@ public class LocationSQLiteOpenHelper extends SQLiteOpenHelper {
             db.execSQL(CREATE_PROVSHI_TABLE);
             db.execSQL(CREATE_CITY_TABLE);
         }
-    }
-
-    public static LocationSQLiteOpenHelper getInstance(Context context){
-        if(mDataBaseHelper == null){
-            mDataBaseHelper = new LocationSQLiteOpenHelper(context,DBName,null,version);;
-        }
-
-        return  mDataBaseHelper;
     }
 
 }

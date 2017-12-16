@@ -104,6 +104,8 @@ public class CitysActivity extends BaseActivity {
         recyclerViewCity.setItemAnimator( new DefaultItemAnimator());
 
         mAreaAdapter = new AreaAdapter(this.getApplicationContext(),citysList);
+
+        //给RecyclerView 设置child view Item 的点击监听
         mAreaAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view) {
@@ -123,6 +125,12 @@ public class CitysActivity extends BaseActivity {
         recyclerViewCity.setAdapter(mAreaAdapter);
     }
 
+    /**
+     * 获取城市/省份信息 并设置到View 中
+     * 1.省份provshiID 不为null 时,先从数据库获取指定的省份数据,数据库没有相关的信息再尝试访问网络获取信息并保存到数据库
+     * 2.省份provshiID 为null 时,先从数据库获取全部的省份信息,数据库没有相关的信息再尝试访问网络获取信息并保存到数据库
+     * @param provshiID
+     */
     public void getLocationData(final String provshiID){
         if(provshiID != null && provshiID.trim().length() >0){
             List<City> list = WeatherUtils.getCitysFromDB(CitysActivity.this,"" +provshiID);
@@ -239,6 +247,12 @@ public class CitysActivity extends BaseActivity {
             requestQueue.stop();
             requestQueue = null;
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
     }
 
     class AreaAdapter extends RecyclerView.Adapter<AreaViewHolder> implements View.OnClickListener {

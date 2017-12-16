@@ -16,12 +16,34 @@ import java.util.List;
  */
 
 public class LocationDB {
-    private SQLiteDatabase db;
+    private static SQLiteDatabase db = null;
+    private static LocationDB mLocationDB = null;
 
-    public LocationDB(Context context){
-        db = LocationSQLiteOpenHelper.getInstance(context).getWritableDatabase();
+    private LocationDB(Context context){
+        if(db == null){
+            db = LocationSQLiteOpenHelper.getInstance(context).getWritableDatabase();
+        }
     }
 
+    public static LocationDB getInstance(Context context){
+        if(mLocationDB == null){
+            mLocationDB = new LocationDB(context);
+
+        }
+        return mLocationDB;
+    }
+
+    public void closeDB(){
+        if(db != null){
+            db.close();
+
+        }
+    }
+
+    /**
+     * 保存单个省份信息
+     * @param provshi
+     */
     public void addProvshi(Provshi provshi){
         if(provshi != null && provshi.provshiId != null){
             ContentValues cv = new ContentValues();
@@ -31,6 +53,10 @@ public class LocationDB {
         }
     }
 
+    /**
+     * 保存多个省份的信息
+     * @param provshiList
+     */
     public void addProvshis(List<Provshi> provshiList){
         for (Provshi p :
                 provshiList) {
@@ -38,6 +64,10 @@ public class LocationDB {
         }
     }
 
+    /**
+     * 获取省份列表全部信息
+     * @return
+     */
     public List<Provshi> getProvshiList(){
         ArrayList<Provshi> list = new ArrayList<Provshi>();
         Cursor cursor = db.query(LocationSQLiteOpenHelper.TABLE_PROVSHI,null,null,null,null,null,null);
@@ -48,6 +78,10 @@ public class LocationDB {
         return list;
     }
 
+    /**
+     * 获取省份列表的名称
+     * @return
+     */
     public List<String> getProvshNameiList(){
         ArrayList<String> list = new ArrayList<String>();
         Cursor cursor = db.query(LocationSQLiteOpenHelper.TABLE_PROVSHI,null,null,null,null,null,null);
@@ -58,6 +92,10 @@ public class LocationDB {
         return list;
     }
 
+    /**
+     * 获取全部的城市的列表名称
+     * @return
+     */
     public List<String> getCityNameiList(){
         ArrayList<String> list = new ArrayList<String>();
         Cursor cursor = db.query(LocationSQLiteOpenHelper.TABLE_CITYS,null,null,null,null,null,null);
@@ -68,6 +106,12 @@ public class LocationDB {
         return list;
     }
 
+
+    /**
+     * 获取指定省份的以下的城市信息
+     * @param provshiId
+     * @return
+     */
     public List<City> getCityList(String provshiId){
         ArrayList<City> list = new ArrayList<City>();
         Cursor cursor = db.query(LocationSQLiteOpenHelper.TABLE_CITYS,null,"provshi_id=?",
@@ -79,6 +123,10 @@ public class LocationDB {
         return list;
     }
 
+    /**
+     * 获取全部的城市列表信息
+     * @return
+     */
     public List<City> getCityList(){
         ArrayList<City> list = new ArrayList<City>();
         Cursor cursor = db.query(LocationSQLiteOpenHelper.TABLE_CITYS,null,null,
@@ -90,6 +138,12 @@ public class LocationDB {
         return list;
     }
 
+    /**
+     * 根据省份ID 和城市ID 获取指定城市的信息
+     * @param cityID
+     * @param provshiID
+     * @return
+     */
     public City getCityByID(String cityID,String provshiID){
         City city = new City();
         Cursor cursor = db.query(LocationSQLiteOpenHelper.TABLE_CITYS,null,"city_id=? and provshi_id=?",
@@ -100,6 +154,10 @@ public class LocationDB {
         return city;
     }
 
+    /**
+     * 保存单个城市的信息
+     * @param city
+     */
     public void addCity(City city){
         if(city != null && city.cityId != null){
             ContentValues cv = new ContentValues();
@@ -109,6 +167,11 @@ public class LocationDB {
             db.insert(LocationSQLiteOpenHelper.TABLE_CITYS,null,cv);
         }
     }
+
+    /**
+     * 保存多个城市的信息
+     * @param cityList
+     */
     public void addCitys(List<City> cityList){
         for (City c :
                 cityList) {

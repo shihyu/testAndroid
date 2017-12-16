@@ -180,6 +180,10 @@ public class HeFenWeatherActivity extends BaseActivity implements  SwipeRefreshL
             getCityWeather(mCurrentLocation);
         }else{
             mCurrentLocation = (Location) SharedPreferenceUtil.getObject(this,SharedPreferenceUtil.KEY_BAIDU_LOCATION);
+            /**
+             * 1.先从保存到本地的数据中获取天气数据
+             * 2.再根据实时定位获取对应的天气数据
+             */
             Weather weather_n = (Weather)SharedPreferenceUtil.getObject(this,SharedPreferenceUtil.KEY_NOW_WEATHER);
             Weather weather_h = (Weather)SharedPreferenceUtil.getObject(this,SharedPreferenceUtil.KEY_HOURLY_WEATHER);
             Weather weather_f = (Weather)SharedPreferenceUtil.getObject(this,SharedPreferenceUtil.KEY_FORCAT_WEATHER);
@@ -207,6 +211,8 @@ public class HeFenWeatherActivity extends BaseActivity implements  SwipeRefreshL
 
     public void initView(){
         rv_forecast.setNestedScrollingEnabled(false);
+
+        //监听下拉刷新
         swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_bright,
                 android.R.color.holo_green_light,
                 android.R.color.holo_orange_light,
@@ -242,7 +248,7 @@ public class HeFenWeatherActivity extends BaseActivity implements  SwipeRefreshL
 
         /*initLocationClient();
         initLocationClientOptin();*/
-        mLocationClient.requestLocation();
+        mLocationClient.requestLocation();//重新获取实时定位数据
     }
 
     @OnClick({R.id.tv_setttings,R.id.tv_about_me,R.id.tv_manager_citys})
@@ -295,6 +301,10 @@ public class HeFenWeatherActivity extends BaseActivity implements  SwipeRefreshL
         }
     }
 
+    /**
+     * 获取当前位置的全部天气数据
+     * @param location
+     */
     private void getCityWeather(Location location) {
         if(h == null) h = new MyHandler();
 
@@ -352,6 +362,17 @@ public class HeFenWeatherActivity extends BaseActivity implements  SwipeRefreshL
 
     }
 
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+    }
+
+    /**
+     * 获取实时天气
+     * @param location
+     */
     public void getNowWeatherInfo(Location location){
         if(location.city == null || location.city.trim().equals(""))return;
         String param = "?key="+WeatherConstant.KEY+"&location="+ location.city;
@@ -396,6 +417,10 @@ public class HeFenWeatherActivity extends BaseActivity implements  SwipeRefreshL
     }
 
 
+    /**
+     * 获取各个小时段的天气
+     * @param location
+     */
     public void getHourlyWeather(Location location){
         if(location.city == null || location.city.trim().equals(""))return;
         String param = "?key="+WeatherConstant.KEY+"&location="+ location.city;
@@ -450,6 +475,10 @@ public class HeFenWeatherActivity extends BaseActivity implements  SwipeRefreshL
 
     }
 
+    /**
+     * 获取明天的天气简报
+     * @param location
+     */
     public void getForcastWeather(Location location){
         if(location.city == null || location.city.trim().equals(""))return;
         String param = "?key="+WeatherConstant.KEY+"&location="+ location.city;
@@ -642,6 +671,12 @@ public class HeFenWeatherActivity extends BaseActivity implements  SwipeRefreshL
         return s[position>2?2:position];
     }
 
+    /**
+     * 星期几转换为今天和明天
+     * @param position
+     * @param date
+     * @return
+     */
     private String getXinQi(int position,String date) {
         String[] s = new String[]{"今天","明天","后天"};
         String[] s1 = new String[]{"周日","周一","周二","周三","周四","周五","周六"};
